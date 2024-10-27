@@ -9,6 +9,16 @@
       href="{{url_for('static',filename='css/styles.css')}}"
     />
 </head>
+<header>
+    <nav>
+        <div>管理画面</div>
+        <div class="nav_bar">
+            <a class="nav_list" href=”#”>ホーム</a>
+            <a class="nav_list" href=”#”>園児</a>
+            <a class="nav_list" href=”#”>献立</a>
+        </div>
+    </nav>
+</header>
 <body>
     {% block body %}
     {% endblock %}{% block script %}

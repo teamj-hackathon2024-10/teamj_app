@@ -51,7 +51,7 @@ services:
       - ./ChatApp:/code
     # ローカルの5000番ポートとコンテナの5000番ポートをつなぐ
     ports:
-      - "5000:5000"
+      - "5001:5000"
     # コマンドを実行
     command:  bash -c "python app.py"
     # 先にdbを起動してからappを起動する

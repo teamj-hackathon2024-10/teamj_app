@@ -7,48 +7,95 @@ USE chatapp
 GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser';
 
 
-CREATE TABLE Users (
-    id INT PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    mail_address varchar(255) UNIQUE NOT NULL,
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name varchar(255) NOT NULL,
+    email_address varchar(255) UNIQUE NOT NULL,
     password varchar(255) NOT NULL,
-    phon_number varchar(11) NOT NULL,
-    admin boolean NOT NULL,
+    phone_number varchar(11) NOT NULL,
+    admin boolean NOT NULL
 );
 
-CREATE TABLE Children (
-    id INT PRIMARY KEY,
-    user_id vachar(100) NOT NULL,
-    name varchar(255) NOT NULL,
+
+CREATE TABLE children (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    children_name varchar(255) NOT NULL,
     sex varchar(10) NOT NULL,
     allergies boolean NOT NULL,
-    class_id varchar(255) NOT NULL,
-    birthday date NOT NULL,
-    FOREIGN KEY (uid) REFERENCES users(uid)
-    FOREIGN KEY (cid) REFERENCES users(cid)
-);
-
-
-CREATE TABLE Messages (
-    id serial PRIMARY KEY,
-    user_id INT NOT NULL,
-    channel_id INT NOT NULL,
-    message varchar(255) NOT NULL,
-    datetime DATETIME NOT NULL,
-    FOREIGN KEY (uid) REFERENCES users(uid)
-    FOREIGN KEY (chid) REFERENCES users(chid)
-);
-
-CREATE TABLE classes (
-    id serial PRIMARY KEY,
-    name varchar(255) NOT NULL,
-
+    class_id NOT NULL,
+    birthday DATE NOT NULL,
+    allergies_PDF varchar(255),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
 CREATE TABLE channels (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    uid VARCHAR(255),
+    user_id INT,
     name VARCHAR(255) UNIQUE NOT NULL,
     abstract VARCHAR(255),
-    FOREIGN KEY (uid) REFERENCES users(uid)
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    channel_id varchar(255) NOT NULL,
+    message varchar(255) NOT NULL,
+    datetime DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (channel_id) REFERENCES channels(id)
+);
+
+CREATE TABLE classes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    class_name varchar(255) NOT NULL
+);
+
+CREATE TABLE userchannels (
+    id INT NOT NULL PRIMARY KEY,
+    user_id INT,
+    channel_id varchar(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (channel_id) REFERENCES channels(id)
+);
+
+CREATE TABLE childrenallergens (
+    id INT PRIMARY KEY,
+    children_id INT NOT NULL,
+    allergen_id INT NOT NULL,
+    FOREIGN KEY (children_id) REFERENCES children(id),
+    FOREIGN KEY (allergen_id) REFERENCES allergens(id)
+);
+
+CREATE TABLE allergens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    allergen_items varchar(255) NOT NULL
+);
+
+CREATE TABLE mealallergens (
+    id INT PRIMARY KEY,
+    allergen_id INT NOT NULL,
+    meal_id INT NOT NULL,
+    FOREIGN KEY (allergen_id) REFERENCES allergen(id),
+    FOREIGN KEY (meal_id) REFERENCES meals(id),
+);
+
+CREATE TABLE meals (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    meal_name varchar(255) NOT NULL
+);
+
+CREATE TABLE menus (
+    id INT PRIMARY KEY,
+    date DATE NOT NULL,
+    meal_id1 INT NOT NULL,
+    meal_id2 INT,
+    meal_id3 INT,
+    meal_id4 INT
+    FOREIGN KEY (meal_id1) REFERENCES meals(id),
+    FOREIGN KEY (meal_id2) REFERENCES meals(id),
+    FOREIGN KEY (meal_id3) REFERENCES meals(id),
+    FOREIGN KEY (meal_id4) REFERENCES meals(id)
 );

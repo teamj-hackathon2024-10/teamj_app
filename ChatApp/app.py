@@ -94,6 +94,8 @@ def userSignup():
 
 
 
+# チャンネル一覧ページの表示
+@app.route('/')
 
 
 

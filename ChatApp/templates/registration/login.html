@@ -1,0 +1,42 @@
+{% extends 'registration/base.html'%}
+{% block title %} <title>login</title> {% endblock %}
+
+{% block body %}
+<div class="registration-wrapper">
+    <div class="registration-container">
+        <div class="registration-form-wrapper">
+            <div class="registration-logo">
+                <img 
+                    src="" 
+                    alt="logo"
+                />
+            </div>
+
+            <form class="registration-form login" method="post">
+                <div>
+                    <label for="email-input">メールアドレス</label>
+                    <input type="text" placeholder="メールアドレス" name="email" id="login-email-input">
+                </div>
+                <div>
+                    <label for="password-input">パスワード</label>
+                    <input type="password" placeholder="パスワード" name="password" id="login-password-input">
+                </div>   
+                <div class="registration-button-contasiner">
+                    <!-- 
+                         {% with messages = get_flashed_messages() %} {% if messages %}
+          <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %} {% endwith %}
+
+                    -->
+                    <button class="registration-button">ログイン</button>
+                    <a class="switch-register-mode" href="{{ url_for('sign-up') }}">新規会員登録はこちら</a>
+                </div>     
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+* {
+    float: none;
+    position: static;
+    font-family: "M PLUS 1", sans-serif;
+    font-family: "League Spartan", sans-serif;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0 auto;
+    min-height: 100vh;
+    width: 100vw;
+    color: var(--black);
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: 360px;
+  }
+  
+  input,
+  textarea,
+  button {
+    font-size: inherit;
+    border: none;
+    outline: none;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100%;
+    width: 100%;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+  }
+  
+  input {
+    letter-spacing: 0.1em;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: var(--white);
+  }
+  
+  input:hover,
+  button:hover {
+    cursor: pointer;
+  }
+  
+  button {
+    color: var(--white);
+    border: none;
+    padding: 0.7em 3em;
+    letter-spacing: 0.1rem;
+  }
+  
+  :hover {
+    transition: all 0.5s;
+  }
+  
+  button.rightgreen {
+    background-color: var(--rightgreen);
+  }
+  
+  button.rightgreen:hover {
+    background-color: var(--rightgreen);
+  }
+  
+  .main-container {
+    min-height: 100vh;
+    padding-left: 24px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  

@@ -1,0 +1,13 @@
+/* 色を使いまわししやすいように変数にする。*/
+
+:root{
+    --white: #ffffff;
+    --pink: #FFD7DC;
+    --red: #f00;
+    --magenta: #FF66C4;
+    --rightmagenta: #FF93A1;
+    --cream: #FEFACC;
+    --righitgreen: #8CC04E;
+    --oleeve: #38793B;
+    --gray: #737373;
+}

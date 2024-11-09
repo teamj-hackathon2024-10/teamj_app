@@ -17,8 +17,30 @@
 
     <!-- ファビコン画像挿入 -->
   </head>
+
   <body>
-    {% block body %}{% endblock %}
-    </div>
+    <!-- ヘッダーブロックの開始 -->
+    <header>
+      {% block header %}
+        <div class="registration-logo">
+          <img src="" alt="logo">
+        </div>
+      {% endblock %}
+    </header>
+
+    <!-- ページ毎のコンテンツのブロック  -->
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+
+    <!-- フッターブロックの開始 -->
+    <footer>
+      {% block footer %}
+        <div class="registration-footer">
+          <small>&copy; 2024 Nikomogu. All rights reserved.</small>
+        </div>
+      {% endblock %}
+    </footer>
   </body>
+  
 </html>

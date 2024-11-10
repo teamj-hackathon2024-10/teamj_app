@@ -95,29 +95,29 @@ def userSignup():
 
 
 
-# チャンネル一覧ページの表示
+"""# チャンネル一覧ページの表示
 @app.route('/')
 def index():
     user_id = session.get('user_id')
     if user_id is None:
         return redirect('/login')
-    
+
     else:
         channels = dbConnect.getChannelAll()
         channels.reverse()
-    return render_template('index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
+    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
+"""
 
 
 
 
-
-# メッセージの投稿!
+"""# メッセージの投稿!
 @app.route('/message', methods=['POST'])
 def add_message():
     user_id = session.get('user_id')
     if user_id is None:
         return redirect('/login')
-    
+
     message = request.form.get('message')
     channels_id = request.form.get('channels_id')
 
@@ -125,9 +125,9 @@ def add_message():
         dbConnect.createMessage(user_id, channels_id, message)
 
     return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
+"""
 
 
-    
 
 
 

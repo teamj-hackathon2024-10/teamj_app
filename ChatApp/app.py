@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, request, flash
 from datetime import timedelta
 import hashlib
 import re
+from models import dbConnect
 
 app = Flask(__name__)
 
@@ -24,10 +25,10 @@ def login():
 # ログイン処理
 @app.route('/login', methods=['POST'])
 def userLogin():
-    email = request.form.get('email')
+    email = request.form.get('email')  # emailとpasswordでログインする
     password = request.form.get('password')
 
-    if email == '' or password == '':
+    if email == '' or password == '':  # emailかpasswordが空の場合表示
         flash('入力されていません')
     else:
         user = dbConnect.getUser(email)
@@ -38,7 +39,7 @@ def userLogin():
             if hashpassword != user["password"]:
                 flash('パスワードが間違っています!')
             else:
-                session['uid'] = user["uid"]
+                session['id'] = user["id"]
                 return redirect('/')
     return redirect('/login')
 
@@ -60,7 +61,7 @@ def signup():
 
 
 # サインアップの処理
-@app.route('signup', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def userSignup():
     name = request.form.get('name')
     phone_number = request.form.get('phone_number')
@@ -86,16 +87,49 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:
-            dbConnect.createUser(uid, name, phone_number, email, password, child_name, child_sex, child_birthday)
-            UserId = str(uid)
-            session['uid'] = UserId
+            dbConnect.createUser(id, name, phone_number, email, password, child_name, child_sex, child_birthday)
+            UserId = str(id)
+            session['id'] = UserId
             return redirect('/')
     return redirect('/signup')
 
 
 
-# チャンネル一覧ページの表示
+"""# チャンネル一覧ページの表示
 @app.route('/')
+def index():
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect('/login')
+
+    else:
+        channels = dbConnect.getChannelAll()
+        channels.reverse()
+    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
+"""
+
+
+
+
+"""# メッセージの投稿!
+@app.route('/message', methods=['POST'])
+def add_message():
+    user_id = session.get('user_id')
+    if user_id is None:
+        return redirect('/login')
+
+    message = request.form.get('message')
+    channels_id = request.form.get('channels_id')
+
+    if message:
+        dbConnect.createMessage(user_id, channels_id, message)
+
+    return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
+"""
+
+
+
+
 
 
 

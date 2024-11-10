@@ -15,6 +15,8 @@ CREATE TABLE users (
     phone_number varchar(11) NOT NULL,
     admin boolean NOT NULL
 );
+INSERT INTO users (id, name, email_address)
+
 
 CREATE TABLE classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,37 +63,38 @@ CREATE TABLE userchannels (
 CREATE TABLE allergens (
     id INT AUTO_INCREMENT PRIMARY KEY,
     allergen_items varchar(255) NOT NULL
-    INSERT INTO allergens (allergen_items) VALUES ('えび');
-    INSERT INTO allergens (allergen_items) VALUES ('かに');
-    INSERT INTO allergens (allergen_items) VALUES ('くるみ');
-    INSERT INTO allergens (allergen_items) VALUES ('小麦');
-    INSERT INTO allergens (allergen_items) VALUES ('そば');
-    INSERT INTO allergens (allergen_items) VALUES ('卵');
-    INSERT INTO allergens (allergen_items) VALUES ('乳');
-    INSERT INTO allergens (allergen_items) VALUES ('落花生（ピーナッツ）');
-    INSERT INTO allergens (allergen_items) VALUES ('アーモンド');
-    INSERT INTO allergens (allergen_items) VALUES ('あわび');
-    INSERT INTO allergens (allergen_items) VALUES ('いか');
-    INSERT INTO allergens (allergen_items) VALUES ('いくら');
-    INSERT INTO allergens (allergen_items) VALUES ('オレンジ');
-    INSERT INTO allergens (allergen_items) VALUES ('カシューナッツ');
-    INSERT INTO allergens (allergen_items) VALUES ('キウイフルーツ');
-    INSERT INTO allergens (allergen_items) VALUES ('牛肉');
-    INSERT INTO allergens (allergen_items) VALUES ('ごま');
-    INSERT INTO allergens (allergen_items) VALUES ('さけ');
-    INSERT INTO allergens (allergen_items) VALUES ('さば');
-    INSERT INTO allergens (allergen_items) VALUES ('大豆');
-    INSERT INTO allergens (allergen_items) VALUES ('鶏肉');
-    INSERT INTO allergens (allergen_items) VALUES ('バナナ');
-    INSERT INTO allergens (allergen_items) VALUES ('豚肉');
-    INSERT INTO allergens (allergen_items) VALUES ('マカダミアナッツ');
-    INSERT INTO allergens (allergen_items) VALUES ('もも');
-    INSERT INTO allergens (allergen_items) VALUES ('やまいも');
-    INSERT INTO allergens (allergen_items) VALUES ('りんご');
-    INSERT INTO allergens (allergen_items) VALUES ('ゼラチン');
-
-
 );
+INSERT INTO allergens (allergen_items) VALUES ('えび');
+INSERT INTO allergens (allergen_items) VALUES ('かに');
+INSERT INTO allergens (allergen_items) VALUES ('くるみ');
+INSERT INTO allergens (allergen_items) VALUES ('小麦');
+INSERT INTO allergens (allergen_items) VALUES ('そば');
+INSERT INTO allergens (allergen_items) VALUES ('卵');
+INSERT INTO allergens (allergen_items) VALUES ('乳');
+INSERT INTO allergens (allergen_items) VALUES ('落花生（ピーナッツ）');
+INSERT INTO allergens (allergen_items) VALUES ('アーモンド');
+INSERT INTO allergens (allergen_items) VALUES ('あわび');
+INSERT INTO allergens (allergen_items) VALUES ('いか');
+INSERT INTO allergens (allergen_items) VALUES ('いくら');
+INSERT INTO allergens (allergen_items) VALUES ('オレンジ');
+INSERT INTO allergens (allergen_items) VALUES ('カシューナッツ');
+INSERT INTO allergens (allergen_items) VALUES ('キウイフルーツ');
+INSERT INTO allergens (allergen_items) VALUES ('牛肉');
+INSERT INTO allergens (allergen_items) VALUES ('ごま');
+INSERT INTO allergens (allergen_items) VALUES ('さけ');
+INSERT INTO allergens (allergen_items) VALUES ('さば');
+INSERT INTO allergens (allergen_items) VALUES ('大豆');
+INSERT INTO allergens (allergen_items) VALUES ('鶏肉');
+INSERT INTO allergens (allergen_items) VALUES ('バナナ');
+INSERT INTO allergens (allergen_items) VALUES ('豚肉');
+INSERT INTO allergens (allergen_items) VALUES ('マカダミアナッツ');
+INSERT INTO allergens (allergen_items) VALUES ('もも');
+INSERT INTO allergens (allergen_items) VALUES ('やまいも');
+INSERT INTO allergens (allergen_items) VALUES ('りんご');
+INSERT INTO allergens (allergen_items) VALUES ('ゼラチン');
+
+
+
 
 CREATE TABLE childrenallergens (
     id INT PRIMARY KEY,
@@ -126,3 +129,6 @@ CREATE TABLE menus (
     FOREIGN KEY (meal_id3) REFERENCES meals(id),
     FOREIGN KEY (meal_id4) REFERENCES meals(id)
 );
+
+
+

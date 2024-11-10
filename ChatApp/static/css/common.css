@@ -1,0 +1,157 @@
+  /* 調整用スタイル */
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+main {
+  background-color: var(--cream);
+  height: 800px;
+  display: flex;
+}
+
+.main {
+  margin: auto;
+}
+
+.footer {
+  background-color: var(--pink);
+  height: 200px;
+  display: flex;
+}
+
+.footer div {
+  margin: auto;
+}
+
+/* ヘッダー */
+.header {
+  background-color: var(--pink);
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.header__inner {
+  padding: 0 20px; /*左右の余白確保*/
+  display: flex; /*ロゴとハンバーガーメニューを横に並べる*/
+  align-items: center;
+  justify-content: space-between;
+  height: inherit; /*親要素の高さを継承*/
+  position: relative;
+}
+
+/* ヘッダーのロゴ部分 */
+.header__title {
+  width: 80px;
+}
+
+
+.header__title img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ヘッダーのナビ部分 */
+.header__nav {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  transform: translateX(100%);
+  background-color: var(--cream); /*ハンバーガーメニュークリック時のナビゲーションメニュー背景色*/
+  transition: ease .4s; /*ハンバーガーメニュークリック時のナビゲーションメニュー出現を遅延*/
+}
+/* ハンバーガーメニュー */
+.header__hamburger {
+  width: 48px;
+  height: 100%;
+}
+
+.hamburger {
+  background-color: transparent; /*buttonタグデフォルトスタイルを打ち消し*/
+  border-color: transparent; /*buttonタグデフォルトスタイルを打ち消し*/
+  z-index: 9999;
+  cursor: pointer;
+}
+/* ハンバーガーメニューの線 */
+.hamburger span {
+  width: 100%;
+  height: 1px;
+  background-color: var(--rightmagenta);
+  position: relative;
+  transition: ease .4s; /*ハンバーガーメニュークリック時の三本線の動きを遅延*/
+  display: block;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  margin: 8px 0;
+}
+
+
+.hamburger span:nth-child(3) {
+  top: 0;
+}
+
+* ハンバーガーメニュークリック後のスタイル */
+.header__nav.active {
+  transform: translateX(0);
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 5px;
+  transform: rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: -13px;
+  transform: rotate(-45deg);
+}
+
+.nav-items {
+  padding-top: 250px;
+  padding-bottom: 200px;
+}
+
+/* ナビのリンク */
+.nav-items__item a {
+  color: var(--red);
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.nav-items__item:last-child a {
+  margin-bottom: 0;
+}
+
+.footer {
+  background-color: var(--pink);
+  height: 200px;
+  display: flex;
+}
+.footer div {
+  margin: auto;
+}

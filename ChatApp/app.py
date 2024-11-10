@@ -110,7 +110,7 @@ def index():
 
 
 
-# メッセージの投稿
+# メッセージの投稿!
 @app.route('/message', methods=['POST'])
 def add_message():
     user_id = session.get('user_id')
@@ -124,6 +124,9 @@ def add_message():
         dbConnect.createMessage(user_id, channels_id, message)
 
     return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
+
+
+    
 
 
 

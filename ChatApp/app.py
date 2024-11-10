@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, redirect, request, flash
 from datetime import timedelta
 import hashlib
 import re
+from models import dbConnect
 
 app = Flask(__name__)
 
@@ -60,7 +61,7 @@ def signup():
 
 
 # サインアップの処理
-@app.route('signup', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def userSignup():
     name = request.form.get('name')
     phone_number = request.form.get('phone_number')

@@ -16,7 +16,7 @@ def index():
 
 
 # ログインページの表示
-app.route('/login')
+@app.route('/login')
 def login():
     return render_template('registration/login.html')
 
@@ -40,7 +40,10 @@ def userLogin():
                 flash('パスワードが間違っています!')
             else:
                 session['id'] = user["id"]
-                return redirect('/')
+                if user["admin"] == 0:
+                    return redirect('/')
+                else:
+                    return redirect('管理者用に飛ぶURL')
     return redirect('/login')
 
 

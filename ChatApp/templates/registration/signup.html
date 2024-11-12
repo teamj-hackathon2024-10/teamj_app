@@ -29,8 +29,8 @@
                 </div>
 
                 <div>
-                    <label for="signup-name-input">確認用パスワード</label>
-                    <input type="password" name="password" id="signup-password-input"/>
+                    <label for="signup-password-input">確認用パスワード</label>
+                    <input type="password" name="password" id="signup-password-input-recognition"/>
                 </div>
 
                 <div>
@@ -58,16 +58,16 @@
                     <input type="radio" name="child-birth" value="ない"/>
                 </div>
 
-                <div class="registration-button-container">
-                    <!-- 
-                        {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} {% endwith %}
-                    -->
+                <div class="registration-button-container"> 
+                    {% with messages = get_flashed_messages() %} 
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %} 
+                    {% endwith %}
                     <button class="registration-button rightgreen">登録</button>
                     <!-- TODO 個々の画面遷移リンクの修正 -->
                     <a class="switch-register-mode" href="{{ url_for('login') }}">ログインはこちら</a>
@@ -76,4 +76,4 @@
         </div>
     </div>
 </div>
-{% endbloack%}
+{% endblock%}

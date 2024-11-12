@@ -28,7 +28,7 @@
   textarea,
   button {
     font-size: inherit;
-    border: none;
+    /*border: none;*/
     outline: none;
   }
   
@@ -42,6 +42,7 @@
   
   input {
     letter-spacing: 0.1em;
+    color: var(--black);
   }
   
   li {
@@ -50,7 +51,7 @@
   
   a {
     text-decoration: none;
-    color: var(--white);
+    color: var(--magenta);
   }
   
   input:hover,
@@ -58,24 +59,29 @@
     cursor: pointer;
   }
   
+  /*
   button {
-    color: var(--white);
+    color: var(--rightgreen);
     border: none;
     padding: 0.7em 3em;
     letter-spacing: 0.1rem;
   }
+  */
   
   :hover {
     transition: all 0.5s;
   }
   
+  /*
   button.rightgreen {
+    color: var(--white);
     background-color: var(--rightgreen);
   }
   
   button.rightgreen:hover {
     background-color: var(--rightgreen);
   }
+  */
   
   .main-container {
     min-height: 100vh;

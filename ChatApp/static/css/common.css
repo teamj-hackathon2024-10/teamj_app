@@ -1,16 +1,16 @@
   /* 調整用スタイル */
 
 a {
-  text-decoration: none;
+  text-decoration: none;  /* aタグのデフォルトでアンダーラインが表示されるため非表示に変更 */
 }
 
 ul,
 li {
-  list-style: none;
+  list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
 }
 
 main {
-  background-color: var(--cream);
+  background-color: var(--white);
   height: 800px;
   display: flex;
 }
@@ -34,11 +34,11 @@ main {
   background-color: var(--pink);
   width: 100%;
   height: 50px;
-  position: fixed;
+  position: fixed;  /* スクロールしたときにヘッダーを追従する */
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 999; /* ヘッダーは表示順を上 */
 }
 
 .header__inner {
@@ -64,16 +64,36 @@ main {
 
 /* ヘッダーのナビ部分 */
 .header__nav {
-  position: absolute;
+  position: absolute; /*絶対配置で位置を指定する*/
   right: 0;
   left: 0;
   top: 0;
   width: 100%;
   height: 100vh;
-  transform: translateX(100%);
+  transform: translateX(100%); /*右側に移動する*/
   background-color: var(--cream); /*ハンバーガーメニュークリック時のナビゲーションメニュー背景色*/
   transition: ease .4s; /*ハンバーガーメニュークリック時のナビゲーションメニュー出現を遅延*/
 }
+
+.nav-items {
+  padding-top: 250px;
+  padding-bottom: 200px;
+}
+
+/* ナビのリンク */
+.nav-items__item a {
+  color: var(--oleeve);
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 24px; /* メニュー間の余白を設定 */
+}
+
+.nav-items__item:last-child a {
+  margin-bottom: 0; /* 最後のメニューは余白がいらない */
+}
+
 /* ハンバーガーメニュー */
 .header__hamburger {
   width: 48px;
@@ -81,18 +101,17 @@ main {
 }
 
 .hamburger {
-  background-color: transparent; /*buttonタグデフォルトスタイルを打ち消し*/
+  background-color: transparent; /*フォーカスを当てるためにbuttonタグデフォルトスタイルを打ち消し*/
   border-color: transparent; /*buttonタグデフォルトスタイルを打ち消し*/
   z-index: 9999;
-  cursor: pointer;
 }
-/* ハンバーガーメニューの線 */
+/* ハンバーガーメニューの線はspanタグ */
 .hamburger span {
   width: 100%;
   height: 1px;
-  background-color: var(--rightmagenta);
+  background-color: var(--magenta);
   position: relative;
-  transition: ease .4s; /*ハンバーガーメニュークリック時の三本線の動きを遅延*/
+  transition: ease 0.4s; /*三本戦をクリックしてから0.4秒後に`ease-in`でゆっくり始まり、徐々に速くな*/
   display: block;
 }
 
@@ -104,54 +123,26 @@ main {
   margin: 8px 0;
 }
 
-
 .hamburger span:nth-child(3) {
   top: 0;
 }
 
-* ハンバーガーメニュークリック後のスタイル */
+/*ハンバーガーメニュークリック後のスタイル ハンバーガーメニューをクリックしたらactiveクラスを付与する*/
 .header__nav.active {
-  transform: translateX(0);
+  transform: translateX(0); /*ハンバーガーメニューをクリックした後にactiveクラスが付いたら元に戻す*/
 }
 
 .hamburger.active span:nth-child(1) {
   top: 5px;
-  transform: rotate(45deg);
+  transform: rotate(45deg); /*一番上の線が45度傾く*/
 }
 
 .hamburger.active span:nth-child(2) {
-  opacity: 0;
+  opacity: 0; /*真ん中の線が透明になる*/
 }
 
 .hamburger.active span:nth-child(3) {
   top: -13px;
-  transform: rotate(-45deg);
+  transform: rotate(-45deg); /*一番下の線が45度反対に傾く*/
 }
 
-.nav-items {
-  padding-top: 250px;
-  padding-bottom: 200px;
-}
-
-/* ナビのリンク */
-.nav-items__item a {
-  color: var(--red);
-  width: 100%;
-  display: block;
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 24px;
-}
-
-.nav-items__item:last-child a {
-  margin-bottom: 0;
-}
-
-.footer {
-  background-color: var(--pink);
-  height: 200px;
-  display: flex;
-}
-.footer div {
-  margin: auto;
-}

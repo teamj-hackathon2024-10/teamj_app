@@ -111,6 +111,27 @@ def index():
     return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
 """
 
+# チャンネルの削除機能
+@app.route('/delete/<channels_id>')
+def delete_channel(channels_id):
+    admin = session.get('admin')
+    if admin is None:
+        return redirect('/login')
+    else:
+        channel = dbConnect.getChannelAll(channels_id)
+        if channel['admin'] != ["admin"]:
+            flash('チャンネルは管理者のみ削除可能です')
+            return redirect('/')
+        else:
+            dbConnect.getChannelAll(channels_id)
+            return redirect('/')
+        
+        
+
+
+
+
+
 
 
 

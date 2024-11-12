@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="registraion-wrapper">
-    <div class="registration-container">
+<div class="registration-wrapper">
+    <!-- <div class="registration-container"> -->
         <div class="registration-form-wrapper">
             <form class="registration-form signup" method="post">
                 <div>
@@ -53,9 +53,11 @@
                 </div>
 
                 <div>
-                    <label for="signup-child-birth-input">食物に対するアレルギー</label>
-                    <input type="radio" name="child-birth" value="ある"/>
-                    <input type="radio" name="child-birth" value="ない"/>
+                    <label for="signup-child-arergy-input">食物に対するアレルギー</label>
+                        <div class="signup-input-wrapper">
+                            <input type="radio" name="child-arergy-true" value="0" id="signup-child-arergy-input-true" checked required/>ある
+                            <input type="radio" name="child-arergy-false" value="1" id="signup-child-arergy-input-false" />ない
+                        </div>
                 </div>
 
                 <div class="registration-button-container"> 
@@ -74,6 +76,6 @@
                 </div>
             </form>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
 {% endblock%}

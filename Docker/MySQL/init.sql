@@ -15,7 +15,7 @@ CREATE TABLE users (
     phone_number varchar(11) NOT NULL,
     admin boolean NOT NULL DEFAULT FALSE
 );
-INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太',' futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1)
+INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太',' futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
 
 
 CREATE TABLE classes (

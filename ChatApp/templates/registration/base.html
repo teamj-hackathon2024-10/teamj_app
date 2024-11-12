@@ -7,6 +7,7 @@
     {% block title %}{% endblock %}
 
     <!-- CSSのスタイルをここに記述 --> 
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,11 +22,9 @@
   <body>
     <!-- ヘッダーブロックの開始 -->
     <header>
-      {% block header %}
-        <div class="registration-logo">
-          <img src="" alt="logo">
-        </div>
-      {% endblock %}
+      <div class="registration-logo">
+        <img src="{{ url_for('static',filename='img/logo.png') }}" alt="logo">
+      </div>
     </header>
 
     <!-- ページ毎のコンテンツのブロック  -->
@@ -35,11 +34,9 @@
 
     <!-- フッターブロックの開始 -->
     <footer>
-      {% block footer %}
-        <div class="registration-footer">
-          <small>&copy; 2024 Nikomogu. All rights reserved.</small>
-        </div>
-      {% endblock %}
+      <div class="registration-footer">
+        <small>&copy; 2024 Nikomogu. All rights reserved.</small>
+      </div>
     </footer>
   </body>
   

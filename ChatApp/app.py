@@ -59,7 +59,7 @@ def logout():
 # サインアップページの表示
 @app.route('/signup')
 def signup():
-    return render_template('registration.html')
+    return render_template('registration/signup.html')
 
 
 

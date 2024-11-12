@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="registraion-wrapper">
-    <div class="registration-container">
+<div class="registration-wrapper">
+    <!-- <div class="registration-container"> -->
         <div class="registration-form-wrapper">
             <form class="registration-form signup" method="post">
                 <div>
@@ -29,8 +29,8 @@
                 </div>
 
                 <div>
-                    <label for="signup-name-input">確認用パスワード</label>
-                    <input type="password" name="password" id="signup-password-input"/>
+                    <label for="signup-password-input">確認用パスワード</label>
+                    <input type="password" name="password" id="signup-password-input-recognition"/>
                 </div>
 
                 <div>
@@ -53,27 +53,29 @@
                 </div>
 
                 <div>
-                    <label for="signup-child-birth-input">食物に対するアレルギー</label>
-                    <input type="radio" name="child-birth" value="ある"/>
-                    <input type="radio" name="child-birth" value="ない"/>
+                    <label for="signup-child-arergy-input">食物に対するアレルギー</label>
+                        <div class="signup-input-wrapper">
+                            <input type="radio" name="child-arergy-true" value="0" id="signup-child-arergy-input-true" checked required/>ある
+                            <input type="radio" name="child-arergy-false" value="1" id="signup-child-arergy-input-false" />ない
+                        </div>
                 </div>
 
-                <div class="registration-button-container">
-                    <!-- 
-                        {% with messages = get_flashed_messages() %} {% if messages %}
-            <ul class="flashes">
-                {% for message in messages %}
-                <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} {% endwith %}
-                    -->
+                <div class="registration-button-container"> 
+                    {% with messages = get_flashed_messages() %} 
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %} 
+                    {% endwith %}
                     <button class="registration-button rightgreen">登録</button>
                     <!-- TODO 個々の画面遷移リンクの修正 -->
                     <a class="switch-register-mode" href="{{ url_for('login') }}">ログインはこちら</a>
                 </div>
             </form>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
-{% endbloack%}
+{% endblock%}

@@ -133,8 +133,19 @@ def add_channel():
 
 
 
+# チャンネルの更新
+@app.route('/update_channel', methods=['POST'])
+def update_channel():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect('/login')
+    
+    channel_id = request.form.get('channel_id')
+    channel_name = request.form.get('channelTittle')
+    channel_description = request.form.get('channelDescription')
 
-
+    dbConnect.updateChannel('user_id, channel_name, channel_description, channel_id')
+    return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
 
 
 
@@ -154,7 +165,6 @@ def delete_channel(channels_id):
             return redirect('/')
 
 
-#
 
 
 

@@ -60,6 +60,7 @@ def logout():
 @app.route('/signup')
 def signup():
     return render_template('registration/signup.html')
+    return render_template('registration.html')
 
 
 
@@ -109,7 +110,33 @@ def index():
         channels = dbConnect.getChannelAll()
         channels.reverse()
     return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
+
 """
+
+
+
+# チャンネルの追加
+@app.route('/', methods=['POST'])
+def add_channel():
+   admin = session.get('admin')
+   if admin is None:
+       return redirect('/login')
+   channel_name = request.form.get('channelTitle')
+   channel = dbConnect.getChannelByName(channel_name)
+   if channel == None:
+       channel_description = request.form.get('channelDescription')
+       dbConnect.addChannel(admin, channel_name, channel_description)
+       return redirect('/')
+   else:
+       error = '既に同じ名前のチャンネルがあります'
+       return render_template('error/error.html', error_message=error)
+   
+
+
+
+
+
+
 
 # チャンネルの削除機能
 @app.route('/delete/<channels_id>')
@@ -126,7 +153,8 @@ def delete_channel(channels_id):
             dbConnect.getChannelAll(channels_id)
             return redirect('/')
         
-        
+
+# 
 
 
 

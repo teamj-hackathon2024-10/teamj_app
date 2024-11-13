@@ -1,9 +1,20 @@
-{% extends 'management_base.html' %}{% block title %}
-<title>管理画面ホーム</title>
-{% endblock %}{% block body %}
+{% extends 'management/base.html'%}
+{% block title %} <title>home</title> {% endblock %}
 
-<div>
-    
+{% block body %}
+<div class="home-container">
+    <div class="tommorrow-meals-container">
+        <label for="tomorrow-meals-title">明日の献立</label>
+        <div class="tomorrow-meals-area">
+
+        </div>
+    </div>
+
+    <div class="allergy-matching-results-container">
+        <label for="allergy-matching-results-title">アレルギー照合結果</label>
+        <div class="allergy-matching-results-area">
+
+        </div>
+    </div>
 </div>
-
 {% endblock %}

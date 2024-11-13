@@ -97,6 +97,13 @@ def userSignup():
             return redirect('/')
     return redirect('/signup')
 
+@app.route('/management-home')
+def managementHome():
+    return render_template('management/home.html')
+
+@app.route('/management-channels')
+def managementChannels():
+    return render_template('management/channels.html')
 
 
 """# チャンネル一覧ページの表示

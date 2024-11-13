@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template(
-    'index.html'
+    'user/index.html'
     )
 
 
@@ -130,7 +130,7 @@ def add_channel():
    else:
        error = '既に同じ名前のチャンネルがあります'
        return render_template('error/error.html', error_message=error)
-   
+
 
 
 
@@ -152,9 +152,9 @@ def delete_channel(channels_id):
         else:
             dbConnect.getChannelAll(channels_id)
             return redirect('/')
-        
 
-# 
+
+#
 
 
 

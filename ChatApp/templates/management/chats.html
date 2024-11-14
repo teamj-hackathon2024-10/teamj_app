@@ -1,0 +1,17 @@
+{% extends 'management/base.html' %}
+{% block title %} <title>channels</title> {% endblock %}
+
+{% block body %}
+<div class="chats-wrapper">
+    <h1 class="channels-title">{{ channel.name }}</h1>
+    <div class="channels-container">
+        <div class="channel-list">
+            <ul class="channel-box"></ul>
+        </div>
+    </div>
+    <!-- チャンネルの登録-->
+    <div class="channel-register">
+        チャンネル追加
+    </div>
+</div>
+{% endblock %}

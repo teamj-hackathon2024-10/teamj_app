@@ -8,7 +8,10 @@
 
     <link
     rel="stylesheet"
-    href="{{url_for('static',filename='css/styles.css')}}"/>
+    href="{{url_for('static',filename='css/styles-user.css')}}"/>
+    <link
+    rel="stylesheet"
+    href="{{url_for('static',filename='css/color.css')}}"/>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +22,7 @@
        <!-- ファビコン画像挿入 -->
     <link rel="icon" href="../static/img/logp.pig" />
   </head>
-  <>
+  <body>
     <div class="container">
       <header class="header">
         <div class="header__inner">
@@ -52,12 +55,13 @@
       </footer>
       <!-- ここにそれぞれのHTMLファイルやテンプレートを挿入 -->
     </div>
-      {% block script %}
-      {% endblock %}
-      <script
-  src="{{url_for('static',filename='js/common.js')}}"
-  type="text/javascript"
-></script>
+    {% block script %}
+    {% endblock %}
+    <script
+      src="{{url_for('static',filename='js/common.js')}}"
+      type="text/javascript">
+    </script>
+      
 
   </body>
 

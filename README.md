@@ -10,6 +10,7 @@
 |   |   ├── img　 # 画像ファイルを格納
 |   |   └── js    # javascriptを格納
 │   ├── templates       # Template(HTML)用ディレクトリ
+|   |   ├── common     #管理者、ユーザーの共通画面を格納
 |   |   ├── registration　# 新規会員登録用ディレクトリ
 |   |   ├── management　# 管理用ディレクトリ
 |   |   └── user　　　　# ユーザー用ディレクトリ

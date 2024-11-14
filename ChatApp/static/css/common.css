@@ -10,6 +10,8 @@ li {
   list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
 }
 
+/* メイン */
+
 main {
   background-color: var(--white);
   height: 800px;
@@ -20,15 +22,28 @@ main {
   margin: auto;
 }
 
+.today-meals-area{
+  border: solid;
+  padding: 10px;
+}
+
 .footer {
   background-color: var(--pink);
   height: 200px;
   width:100%;
   display: flex;
+  z-index: 999; /* フッターは表示順を上 */
 }
 
-.footer div {
+.footer__inner {
+  color: var(--oleeve);
+  font-size: 24px;
   margin: auto;
+  padding: 24px 24px;
+  align-items: center;
+  justify-content: center;
+  height: inherit; /*親要素の高さを継承*/
+  position: relative; 
 }
 
 /* ヘッダー */

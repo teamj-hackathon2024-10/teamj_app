@@ -24,23 +24,23 @@
       <header class="header">
         <div class="header__inner">
           <div class="header__title header-title">
-              <a href="#">
-                  <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
-              </a>
+            <a href="{{url_for('index')}}">
+              <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
+            </a>
           </div>
-            <nav class="header__nav nav" id="js-nav">
+          <nav class="header__nav nav" id="js-nav">
             <ul class="nav__items nav-items">
                 <li class="nav-items__item"><a href="">ホーム</a></li>
                 <li class="nav-items__item"><a href="">チャンネル一覧</a></li>
                 <li class="nav-items__item"><a href="">基本情報</a></li>
                 <li class="nav-items__item"><a href="">ログアウト</a></li>
             </ul>
-            </nav>
-            <button class="header__hamburger hamburger" id="js-hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+          </nav>
+          <button class="header__hamburger hamburger" id="js-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </header>
       {% block body %}

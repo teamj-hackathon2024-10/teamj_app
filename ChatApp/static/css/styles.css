@@ -1,7 +1,6 @@
-@import "color.css";
+/* ログイン後画面のCSS */
+
 @import "base.css";
-@import "error.css";
-@import "hamberger-menu.css";
-@import "modal.css";
+@import "color.css";
 @import "registration.css";
 @import "common.css";

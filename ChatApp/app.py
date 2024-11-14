@@ -7,9 +7,9 @@ from models import dbConnect
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def userhome():
     return render_template(
-    'user/index.html'
+    'user/userhome.html'
     )
 
 

@@ -1,4 +1,5 @@
-  /* 調整用スタイル */
+/* headerとfooterの修飾 */
+/* ハンバーガーメニュの中身の修飾 */
 
 a {
   text-decoration: none;  /* aタグのデフォルトでアンダーラインが表示されるため非表示に変更 */
@@ -22,6 +23,7 @@ main {
 .footer {
   background-color: var(--pink);
   height: 200px;
+  width:100%;
   display: flex;
 }
 

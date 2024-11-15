@@ -1,13 +1,12 @@
 .userhome-meals {
-  color:green;
+  color: var(--oleeve);
   display:flex;
   flex-flow: column;
-  height:500px;
-  margin:0 0 1em;
+  min-height:500px;
 }
 
 .today-meals{
-  color:black;
+  color: var(--oleeve);
   padding:1em;
   border: 3px solid green;
   margin:0.5em auto;

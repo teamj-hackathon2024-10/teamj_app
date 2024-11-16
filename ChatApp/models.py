@@ -73,6 +73,23 @@ class dbConnect:
             cur.close()
             conn.close()
 
+        """
+    def getUserChanneles(user_id):
+        #特定のユーザーを関連づけたチャンネルの取得
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT channel_id FROM UserChannels WHERE user_id = %s;"
+            cur.execute(sql, (user_id))
+            channels = cur.fetchall()
+            return = channels
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+        """
 
 
     def getChannelAll():

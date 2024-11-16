@@ -3,12 +3,13 @@
 * {
   float: none;
   position: static;
-  font-family: "M PLUS 1", sans-serif;
-  font-family: "League Spartan", sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   font-size: 12px;
   box-sizing: border-box;
 }
-  
+
 body {
   margin: 0 auto;
   min-height: 100vh;

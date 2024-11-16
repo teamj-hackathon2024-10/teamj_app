@@ -1,0 +1,15 @@
+.userhome-meals {
+  color: var(--oleeve);
+  display:flex;
+  flex-flow: column;
+  min-height:500px;
+}
+
+.today-meals{
+  color: var(--oleeve);
+  padding:1em;
+  border: 3px solid green;
+  margin:0.5em auto;
+  width:60%;
+  height:100%;
+}

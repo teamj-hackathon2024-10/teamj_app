@@ -1,6 +1,5 @@
 .userhome-meals {
   color: var(--oleeve);
-  display:flex;
   flex-flow: column;
   min-height:500px;
 }

@@ -3,8 +3,11 @@ from datetime import timedelta
 import hashlib
 import re
 from models import dbConnect
+import uuid
 
 app = Flask(__name__)
+app.secret_key = uuid.uuid4().hex
+app.permanent_session_lifetime = timedelta(days=30)
 
 @app.route('/')
 def userhome():
@@ -75,6 +78,7 @@ def userSignup():
     child_name = request.form.get('child_name')
     child_sex = request.form.get('sex')
     child_birthday = request.form.get('birthday')
+    allergies = 1
 
     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 
@@ -91,8 +95,11 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:
-            dbConnect.createUser(id, name, phone_number, email, password, child_name, child_sex, child_birthday)
-            UserId = str(id)
+            print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+            dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+            DBuser = dbConnect.getUser(email)
+            print(DBuser)
+            UserId = str(DBuser['id'])
             session['id'] = UserId
             return redirect('/')
     return redirect('/signup')
@@ -146,7 +153,7 @@ def update_channel():
     user_id = session.get("user_id")
     if user_id is None:
         return redirect('/login')
-    
+
     channel_id = request.form.get('channel_id')
     channel_name = request.form.get('channelTittle')
     channel_description = request.form.get('channelDescription')

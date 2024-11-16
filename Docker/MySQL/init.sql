@@ -23,17 +23,16 @@ CREATE TABLE classes (
     name varchar(255) NOT NULL
 );
 
+
 CREATE TABLE children (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     name varchar(255) NOT NULL,
     sex varchar(10) NOT NULL,
     allergies boolean NOT NULL,
-    class_id INT NOT NULL,
     birthday DATE NOT NULL,
     allergies_PDF varchar(255),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (class_id) REFERENCES classes(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE channels (
@@ -41,6 +40,7 @@ CREATE TABLE channels (
     name VARCHAR(255) NOT NULL,
     update_at DATETIME NOT NULL
 );
+INSERT INTO channels (id, name, update_at) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00');
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,12 +53,13 @@ CREATE TABLE messages (
 );
 
 CREATE TABLE userchannels (
-    id INT NOT NULL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     channel_id varchar(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
+INSERT INTO userchannels (user_id, channel_id) VALUES(1, 1);
 
 CREATE TABLE allergens (
     id INT AUTO_INCREMENT PRIMARY KEY,

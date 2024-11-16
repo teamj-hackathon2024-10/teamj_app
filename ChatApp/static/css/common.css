@@ -16,7 +16,6 @@ main {
   background-color: var(--white);
   min-height: 90vh;
   padding-top: 12vh;
-  display: flex;
 }
 
 .main {
@@ -28,7 +27,6 @@ main {
   background-color: var(--pink);
   height: 10vh;
   width:100%;
-  display: flex;
   align-items: center;
   justify-content: center;
 }

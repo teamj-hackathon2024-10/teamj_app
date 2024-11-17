@@ -1,0 +1,81 @@
+{% extends 'user/base.html'%}
+{% block title %}<title>Edit_UserInformation</title>{% endblock %}
+
+{% block css %}{% endblock %}
+
+{% block body %}
+<div class="registration-wrapper">
+    <!-- <div class="registration-container"> -->
+        <div class="registration-form-wrapper">
+            <form class="registration-form signup" method="post">
+                <div>
+                    <label for="signup-parent's-name-input">保護者氏名</label>
+                    <input type="text" placeholder="Parent's name" name="name" id="signup-parent's-name-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-phone-number-input">電話番号</label>
+                    <input type="text" placeholder="Phone number" name="phone_number" id="signup-phone-number-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-email-input">メールアドレス</label>
+                    <input type="text" placeholder="Email" name="email" id="signup-email-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-password-input">パスワード</label>
+                    <input type="password" name="password1" id="signup-password-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-password-input">確認用パスワード</label>
+                    <input type="password" name="password2" id="signup-password-input-recognition"/>
+                </div>
+
+                <div>
+                    <label for="signup-child-name-input">お子様のお名前</label>
+                    <input type="text" name="child_name" id="signup-child-name-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-child-sex-input">お子様の性別</label>
+                    <select name="sex">
+                        <option>男の子</option>
+                        <option>女の子</option>
+                        <option>その他</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="signup-child-birth-input">お子様のお誕生日</label>
+                    <input type="date" name="birthday" id="signup-child-birth-input"/>
+                </div>
+
+                <div>
+                    <label for="signup-child-arergy-input">食物に対するアレルギー</label>
+                        <div class="signup-input-wrapper">
+                            <input type="radio" name="child-arergy" value="0" id="signup-child-arergy-input-true" checked required/>ある
+                            <input type="radio" name="child-arergy" value="1" id="signup-child-arergy-input-false" />ない
+                        </div>
+                </div>
+
+                <div class="registration-button-container">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class="flashes">
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                    <button class="registration-button rightgreen">登録</button>
+                    <!-- TODO 個々の画面遷移リンクの修正 -->
+                    <a class="switch-register-mode" href="{{ url_for('login') }}">ログインはこちら</a>
+                </div>
+            </form>
+        </div>
+    <!-- </div> -->
+</div>
+{% endblock%}

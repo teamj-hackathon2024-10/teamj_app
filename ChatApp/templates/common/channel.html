@@ -1,18 +1,18 @@
 <div class="channels-wrapper">
-    <h2 class="channels-title">チャンネル一覧</h2>
-    <div class="channels-container">
-        <div class="channel"></div>
-            <!-- チャンネルにカーソルを当てたときに表示する -->
-            <img src="" alt="cursor">
-            <!-- 変数で差し替え予定-->
-            <div class="channel-name">お知らせ</div>
-            <!-- 編集のペンマーク -->
+    <h1 class="channels-title">チャンネル一覧</h1>
+    <div class="channels-container" id="channels-container">
+
+        <!-- DBから取得したチャンネル一覧を描画する。 -->
+        {% for channel in channels %}
+        <div class="channel">
+            <div class="channel-name">{{ channel.name }}</div>
             <i class="fa-solid fa-pen"></i>
-            <!-- 削除のゴミ箱マーク-->
             <i class="fa-solid fa-trash"></i>
+        </div>
+        {% endfor %}
     </div>
     <!-- チャンネルの登録-->
     <div class="channel-register">
-        チャンネル追加
+        <i class="fa-solid fa-plus"></i>
     </div>
 </div>

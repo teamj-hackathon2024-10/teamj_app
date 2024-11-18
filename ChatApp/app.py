@@ -3,15 +3,17 @@ from datetime import timedelta
 import hashlib
 import re
 from models import dbConnect
+import uuid
 
 app = Flask(__name__)
+app.secret_key = uuid.uuid4().hex
+app.permanent_session_lifetime = timedelta(days=30)
 
 @app.route('/')
 def userhome():
     return render_template(
     'user/userhome.html'
     )
-
 
 
 
@@ -75,6 +77,7 @@ def userSignup():
     child_name = request.form.get('child_name')
     child_sex = request.form.get('sex')
     child_birthday = request.form.get('birthday')
+    allergies = 1
 
     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 
@@ -91,8 +94,11 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:
-            dbConnect.createUser(id, name, phone_number, email, password, child_name, child_sex, child_birthday)
-            UserId = str(id)
+            print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+            dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+            DBuser = dbConnect.getUser(email)
+            print(DBuser)
+            UserId = str(DBuser['id'])
             session['id'] = UserId
             return redirect('/')
     return redirect('/signup')
@@ -106,7 +112,7 @@ def managementChannels():
     return render_template('management/channels.html')
 
 
-"""# チャンネル一覧ページの表示
+# チャンネル一覧ページの表示
 @app.route('/')
 def index():
     user_id = session.get('user_id')
@@ -118,7 +124,7 @@ def index():
         channels.reverse()
     return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
 
-"""
+
 
 
 
@@ -140,19 +146,19 @@ def add_channel():
 
 
 
-# チャンネルの更新
-@app.route('/update_channel', methods=['POST'])
-def update_channel():
-    user_id = session.get("user_id")
-    if user_id is None:
-        return redirect('/login')
-    
-    channel_id = request.form.get('channel_id')
-    channel_name = request.form.get('channelTittle')
-    channel_description = request.form.get('channelDescription')
+# # チャンネルの更新
+# @app.route('/update_channel', methods=['POST'])
+# def update_channel():
+#     user_id = session.get("user_id")
+#     if user_id is None:
+#         return redirect('/login')
 
-    dbConnect.updateChannel('user_id, channel_name, channel_description, channel_id')
-    return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
+#     channel_id = request.form.get('channel_id')
+#     channel_name = request.form.get('channelTittle')
+#     channel_description = request.form.get('channelDescription')
+
+#     dbConnect.updateChannel('user_id, channel_name, channel_description, channel_id')
+#     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
 
 
 
@@ -177,28 +183,20 @@ def delete_channel(channels_id):
 
 
 
+# # メッセージの投稿!
+# @app.route('/message', methods=['POST'])
+# def add_message():
+#     user_id = session.get('user_id')
+#     if user_id is None:
+#         return redirect('/login')
 
+#     message = request.form.get('message')
+#     channels_id = request.form.get('channels_id')
 
+#     if message:
+#         dbConnect.createMessage(user_id, channels_id, message)
 
-"""# メッセージの投稿!
-@app.route('/message', methods=['POST'])
-def add_message():
-    user_id = session.get('user_id')
-    if user_id is None:
-        return redirect('/login')
-
-    message = request.form.get('message')
-    channels_id = request.form.get('channels_id')
-
-    if message:
-        dbConnect.createMessage(user_id, channels_id, message)
-
-    return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
-"""
-
-
-
-
+#     return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
 
 
 

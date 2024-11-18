@@ -14,14 +14,10 @@ CREATE TABLE users (
     password varchar(255) NOT NULL,
     phone_number varchar(11) NOT NULL,
     admin boolean NOT NULL DEFAULT FALSE
+
 );
 INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太',' futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
 
-
-CREATE TABLE classes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255) NOT NULL
-);
 
 CREATE TABLE children (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,11 +25,14 @@ CREATE TABLE children (
     name varchar(255) NOT NULL,
     sex varchar(10) NOT NULL,
     allergies boolean NOT NULL,
-    class_id INT NOT NULL,
     birthday DATE NOT NULL,
     allergies_PDF varchar(255),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (class_id) REFERENCES classes(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE classes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL
 );
 
 CREATE TABLE channels (
@@ -41,6 +40,17 @@ CREATE TABLE channels (
     name VARCHAR(255) NOT NULL,
     update_at DATETIME NOT NULL
 );
+INSERT INTO channels (id, name, update_at) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00');
+
+CREATE TABLE userchannels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    channel_id varchar(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (channel_id) REFERENCES channels(id)
+);
+INSERT INTO userchannels (user_id, channel_id) VALUES(1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
+
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,13 +62,6 @@ CREATE TABLE messages (
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
 
-CREATE TABLE userchannels (
-    id INT NOT NULL PRIMARY KEY,
-    user_id INT NOT NULL,
-    channel_id varchar(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (channel_id) REFERENCES channels(id)
-);
 
 CREATE TABLE allergens (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -92,7 +95,6 @@ INSERT INTO allergens (allergen_items) VALUES ('もも');
 INSERT INTO allergens (allergen_items) VALUES ('やまいも');
 INSERT INTO allergens (allergen_items) VALUES ('りんご');
 INSERT INTO allergens (allergen_items) VALUES ('ゼラチン');
-
 
 
 

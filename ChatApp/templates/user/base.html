@@ -5,18 +5,17 @@
     <meta http-equiv="X-UA-Compatible"   content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}{% endblock %}
-
     <link
     rel="stylesheet"
     href="{{url_for('static',filename='css/styles.css')}}"/>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Sawarabi+Mincho&display=swap"
-      rel="stylesheet"
-    />
-       <!-- ファビコン画像挿入 -->
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles-registration.css')}}"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+      <!-- ファビコン画像挿入 -->
     <link rel="icon" href="../static/img/logp.pig" />
   </head>
   <body>
@@ -33,7 +32,7 @@
                 <li class="nav-items__item"><a href="{{url_for('userhome')}}">ホーム</a></li>
                 <li class="nav-items__item"><a href="{{url_for('userhome')}}">チャンネル一覧</a></li>
                 <li class="nav-items__item"><a href="">基本情報</a></li>
-                <li class="nav-items__item"><a href="">ログアウト</a></li>
+                <li class="nav-items__item"><a href="{{url_for('login')}}">ログアウト</a></li>
             </ul>
           </nav>
           <button class="header__hamburger hamburger" id="js-hamburger">
@@ -46,9 +45,10 @@
       {% block body %}
       {% endblock %}
       <footer class="footer">
-          <div>
-            フッターエリア
-          </div>
+        <di class ="footer__inner">
+            <p>にこもぐ保育園</p>
+            <p>☎ XXX-XXX-XXXX</p>
+        </di>
       </footer>
       <!-- ここにそれぞれのHTMLファイルやテンプレートを挿入 -->
     </div>

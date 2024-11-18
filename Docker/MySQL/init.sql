@@ -16,7 +16,7 @@ CREATE TABLE users (
     admin boolean NOT NULL DEFAULT FALSE
 
 );
-INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太',' futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
+INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太','futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
 
 
 CREATE TABLE children (
@@ -99,7 +99,7 @@ INSERT INTO allergens (allergen_items) VALUES ('ゼラチン');
 
 
 CREATE TABLE childrenallergens (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     children_id INT NOT NULL,
     allergen_id INT NOT NULL,
     FOREIGN KEY (children_id) REFERENCES children(id),
@@ -148,7 +148,7 @@ INSERT INTO meals (name) VALUES ('りんご');
 
 
 CREATE TABLE mealallergens (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     allergen_id INT NOT NULL,
     meal_id INT NOT NULL,
     FOREIGN KEY (allergen_id) REFERENCES allergens(id),
@@ -156,7 +156,7 @@ CREATE TABLE mealallergens (
 );
 
 CREATE TABLE menus (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE NOT NULL,
     meal_id1 INT NOT NULL,
     meal_id2 INT,
@@ -167,6 +167,8 @@ CREATE TABLE menus (
     FOREIGN KEY (meal_id3) REFERENCES meals(id),
     FOREIGN KEY (meal_id4) REFERENCES meals(id)
 );
+INSERT INTO menus (date, meal_id1, meal_id2, meal_id3, meal_id4) VALUES('2024-11-18', 1, 2, 3, 4);
+
 
 
 

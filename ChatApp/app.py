@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
+
 @app.route('/')
 def userhome():
     return render_template(
@@ -37,7 +38,7 @@ def userLogin():
         if user is None:
             flash('このユーザーは存在しません')
         else:
-            hashpassword = hashlib.she256(password.encode('utf-8')).hexdigest()
+            hashpassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
             if hashpassword != user["password"]:
                 flash('パスワードが間違っています!')
             else:
@@ -45,7 +46,7 @@ def userLogin():
                 if user["admin"] == 0:
                     return redirect('/')
                 else:
-                    return redirect('管理者用に飛ぶURL')
+                    return redirect('management-home')#後で@app.routeで書く
     return redirect('/login')
 
 
@@ -62,7 +63,6 @@ def logout():
 @app.route('/signup')
 def signup():
     return render_template('registration/signup.html')
-    return render_template('registration.html')
 
 
 
@@ -111,21 +111,22 @@ def managementHome():
 def managementChannels():
     return render_template('management/channels.html')
 
+# テスト処理
+@app.route('/test')
+def test():
+    session.clear()
+    return render_template('common/channel.html')
 
 # チャンネル一覧ページの表示
-@app.route('/')
+@app.route('/channels')
 def index():
     user_id = session.get('user_id')
     if user_id is None:
-        return redirect('/login')
-
-    else:
+        return redirect('/login')     
+    else: 
         channels = dbConnect.getChannelAll()
         channels.reverse()
-    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
-
-
-
+    return render_template('common/channel.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
 
 
 # チャンネルの追加
@@ -178,8 +179,18 @@ def delete_channel(channels_id):
             return redirect('/')
 
 
+## チャンネル詳細ページの表示
+#@app.route('/detail/<channels_id>')
+#def detail_Channels(channels_id):
+#    user_id = session.get("user_id")
+#    if user_id is None:
+#        return redirect('/login')
 
+#    channels_id = channels_id
+#    channel = dbConnect.getChannelById(channels_id)
+#    messages = dbConnect.getMessageAll(channels_id)
 
+#    return render_template('detail.html', messages=messages, channel=channel, user_id=user_id)
 
 
 

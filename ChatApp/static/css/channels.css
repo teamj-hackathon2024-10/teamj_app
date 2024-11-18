@@ -1,0 +1,21 @@
+.channels-wrapper{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.channels-title{
+    color: var(--oleeve);
+}
+
+.channels-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.channel{
+    width: 100%;
+}

@@ -121,7 +121,7 @@ def index():
     else:
         channels = dbConnect.getChannelAll()
         channels.reverse()
-    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
+    return render_template('user/channels.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
 
 
 
@@ -146,8 +146,8 @@ def add_channel():
 
 
 # # チャンネルの更新
-# @app.route('/update_channel', methods=['POST'])
-# def update_channel():
+#@app.route('/update_channel', methods=['POST'])
+#def update_channel():
 #     user_id = session.get("user_id")
 #     if user_id is None:
 #         return redirect('/login')
@@ -177,12 +177,22 @@ def delete_channel(channels_id):
             return redirect('/')
 
 
+# チャンネル詳細ページ表示機能
+@app.route('/detail/<channels_id>')
+def detail(channels_id):
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect('/login')
+    
+    channels_id = channels_id
+    channel = dbConnect.getChannelById(channels_id)
+    message = dbConnect.getMessageAll(channels_id)
+
+    return render_template('user/channels.html', message=message, channel=channel, user_id=user_id)
 
 
 
-
-
-# # メッセージの投稿!
+# メッセージの投稿機能
 # @app.route('/message', methods=['POST'])
 # def add_message():
 #     user_id = session.get('user_id')

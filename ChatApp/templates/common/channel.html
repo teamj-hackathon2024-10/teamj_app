@@ -1,15 +1,18 @@
+{% extends 'user/base.html'%}
+{% block title %}<title>management_channel</title>{% endblock %}
+
 <div class="channels-wrapper">
     <h1 class="channels-title">チャンネル一覧</h1>
     <div class="channels-container" id="channels-container">
 
         <!-- DBから取得したチャンネル一覧を描画する。 -->
-        {% for channel in channels %}
+        <!-- {% for channel in channels %} -->
         <div class="channel">
-            <div class="channel-name">{{ channel.name }}</div>
+            <div class="channel-name"><!-- {{ channel.name }} --> サンプル</div>
             <i class="fa-solid fa-pen"></i>
             <i class="fa-solid fa-trash"></i>
         </div>
-        {% endfor %}
+        <!-- {% endfor %} -->
     </div>
     <!-- チャンネルの登録-->
     <div class="channel-register">

@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
+
 @app.route('/')
 def userhome():
     return render_template(
@@ -111,21 +112,22 @@ def managementHome():
 def managementChannels():
     return render_template('management/channels.html')
 
+# テスト処理
+@app.route('/test')
+def test():
+    session.clear()
+    return render_template('common/channel.html')
 
 # チャンネル一覧ページの表示
-@app.route('/')
+@app.route('/channels')
 def index():
     user_id = session.get('user_id')
     if user_id is None:
-        return redirect('/login')
-
-    else:
+        return redirect('/login')     
+    else: 
         channels = dbConnect.getChannelAll()
         channels.reverse()
-    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
-
-
-
+    return render_template('common/channel.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
 
 
 # チャンネルの追加

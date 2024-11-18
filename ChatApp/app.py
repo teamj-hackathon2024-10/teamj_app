@@ -37,7 +37,7 @@ def userLogin():
         if user is None:
             flash('このユーザーは存在しません')
         else:
-            hashpassword = hashlib.she256(password.encode('utf-8')).hexdigest()
+            hashpassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
             if hashpassword != user["password"]:
                 flash('パスワードが間違っています!')
             else:
@@ -45,7 +45,7 @@ def userLogin():
                 if user["admin"] == 0:
                     return redirect('/')
                 else:
-                    return redirect('管理者用に飛ぶURL')
+                    return redirect('management-home')#後で@app.routeで書く
     return redirect('/login')
 
 
@@ -62,7 +62,6 @@ def logout():
 @app.route('/signup')
 def signup():
     return render_template('registration/signup.html')
-    return render_template('registration.html')
 
 
 

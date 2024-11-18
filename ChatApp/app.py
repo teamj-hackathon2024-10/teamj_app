@@ -177,8 +177,18 @@ def delete_channel(channels_id):
             return redirect('/')
 
 
+## チャンネル詳細ページの表示
+#@app.route('/detail/<channels_id>')
+#def detail_Channels(channels_id):
+#    user_id = session.get("user_id")
+#    if user_id is None:
+#        return redirect('/login')
 
+#    channels_id = channels_id
+#    channel = dbConnect.getChannelById(channels_id)
+#    messages = dbConnect.getMessageAll(channels_id)
 
+#    return render_template('detail.html', messages=messages, channel=channel, user_id=user_id)
 
 
 

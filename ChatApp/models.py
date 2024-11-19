@@ -8,7 +8,6 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            #user_sql = "INSERT INTO users (id, name, email, password, phone_number, admin) VALUES (%s, %s, %s, %s, %s, %s);"
             user_sql = "INSERT INTO users ( name, email_address, password, phone_number, admin) VALUES (%s, %s, %s, %s, %s);"
             cur.execute(user_sql, ( name, email, password, phone_number,0))
             user_id_sql = 'SELECT id FROM users WHERE email_address=%s'

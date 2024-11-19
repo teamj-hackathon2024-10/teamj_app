@@ -4,14 +4,11 @@
         width: 100%;
         padding-top: 60px;
         padding-bottom: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .channels-title{
         color: var(--oleeve);
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .channels-container{

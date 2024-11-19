@@ -1,0 +1,43 @@
+/*　スマホの画面を作成するので、全てのCSSをメディアクエリで囲む */
+@media screen and (max-width: 430px) {
+    .home-wrapper{
+        width: 100%;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .home-container{
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        
+    }
+
+    .tommorrow-meals-container{
+        width: 100%;
+    }
+
+    .tomorrow-meals-title{
+        color: var(--oleeve);
+        font-size: 18px;
+    }
+
+    .tomorrow-meals-area {
+        border: 2px solid var(--oleeve);
+    }
+
+    .allergy-matching-results-container{
+        width: 100%;
+    }
+
+    .allergy-matching-results-title{
+        color: var(--oleeve);
+        font-size: 18px;
+    }
+
+    .allergy-matching-results-area{
+        border: 2px solid var(--oleeve);
+    }
+}

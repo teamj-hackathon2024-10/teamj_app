@@ -3,4 +3,9 @@
 @import "base.css";
 @import "color.css";
 @import "common.css";
+@import "error.css";
+@import "management-home.css";
+@import "modal.css";
+@import "registration.css";
+@import "styles-registration.css";
 @import "userhome.css";

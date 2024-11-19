@@ -66,9 +66,9 @@ CREATE TABLE messages (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
-INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(1, 1, 'お知らせテストですよ。', '2020-01-01 10:10:10-10:00');
-INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(2, 2, 'しんちゃんママです。よろしくお願いします。', '2020-01-01 11:10:10-10:00');
-INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(1, 2, '園長の文太です。よろしくお願いします。', '2020-01-01 12:10:10-10:00');
+INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(1, 1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B", 'お知らせテストですよ。', '2020-01-01 10:10:10-10:00');
+INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(2, 2, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B", 'しんちゃんママです。よろしくお願いします。', '2020-01-01 11:10:10-10:00');
+INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(1, 2, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B", '園長の文太です。よろしくお願いします。', '2020-01-01 12:10:10-10:00');
 
 CREATE TABLE allergens (
     id INT AUTO_INCREMENT PRIMARY KEY,

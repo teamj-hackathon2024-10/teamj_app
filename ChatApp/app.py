@@ -10,6 +10,7 @@ app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
 
+# ユーザーホーム画面の表示
 @app.route('/')
 def userhome():
     return render_template(
@@ -102,19 +103,29 @@ def userSignup():
             return redirect('/')
     return redirect('/signup')
 
+
+
+# 管理者のホーム画面表示
 @app.route('/management-home')
 def managementHome():
     return render_template('management/home.html')
 
+
+
+# 管理者のチャンネルページの表示
 @app.route('/management-channels')
 def managementChannels():
     return render_template('management/channels.html')
+
+
 
 # テスト処理
 @app.route('/test')
 def test():
     session.clear()
     return render_template('common/chats.html')
+
+
 
 # チャンネル一覧ページの表示
 @app.route('/channels')
@@ -180,6 +191,7 @@ def delete_channel(channel_id):
             return redirect('/')
 
 
+
 # チャンネル詳細ページ表示機能
 @app.route('/detail/<channel_id>')
 def detail(channel_id):
@@ -208,10 +220,28 @@ def detail(channel_id):
 #     if message:
 #         dbConnect.createMessage(user_id, channels_id, message)
 
-#     return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
+#     return redirect('/user/chats.html/'{channels_id}.format(channels_id = channels_id))
+
+
+
+## 子供のアレルギー原因食品
+#@app.route('/allergens/<allergen_id>')
+#def allergenMaster(allergen_id):
+#    children_id = session.get('children_id')
+#   if children_id is None:
+#       return redirect('/login')
+    
+#    else:
+#        allergen = dbConnect.getChildrenAllergens(children_id)
+#        allergen.reverse()
+#   return render_template('management/allergen.html', allergen_id=allergen_id, children_id=children_id)
+
+
+
 
 
 
 
 if __name__ == '__main__':
     app.run (host= "0.0.0.0", debug = True)
+    

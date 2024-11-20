@@ -114,7 +114,7 @@ def managementChannels():
 @app.route('/test')
 def test():
     session.clear()
-    return render_template('common/channel.html')
+    return render_template('common/chats.html')
 
 # チャンネル一覧ページの表示
 @app.route('/channels')

@@ -17,7 +17,8 @@ CREATE TABLE users (
 
 );
 INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太','futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
-INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (2, '野原 みさえ','misae@kureyonn.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799222222', 0);
+INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (2, '野原 みさえ','misae@kureyonn.com','e19f7ef7976fb75fe5d83b374f3f3696073f69236370778c177a684b226e5588', '0799222222', 0);
+-- ID2のパスワードは "misae"です。
 
 CREATE TABLE children (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,7 +56,7 @@ CREATE TABLE userchannels (
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
 INSERT INTO userchannels (user_id, channel_id) VALUES(1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
-INSERT INTO userchannels (user_id, channel_id) VALUES(2, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
+INSERT INTO userchannels (user_id, channel_id) VALUES(2, "d00a07ec-15c0-318d-d0ce-477e24cd38e2");
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

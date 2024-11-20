@@ -9,12 +9,12 @@ app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
+
 @app.route('/')
 def userhome():
     return render_template(
     'user/userhome.html'
     )
-
 
 
 # ログインページの表示
@@ -37,7 +37,7 @@ def userLogin():
         if user is None:
             flash('このユーザーは存在しません')
         else:
-            hashpassword = hashlib.she256(password.encode('utf-8')).hexdigest()
+            hashpassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
             if hashpassword != user["password"]:
                 flash('パスワードが間違っています!')
             else:
@@ -45,7 +45,7 @@ def userLogin():
                 if user["admin"] == 0:
                     return redirect('/')
                 else:
-                    return redirect('管理者用に飛ぶURL')
+                    return redirect('management-home')
     return redirect('/login')
 
 
@@ -62,7 +62,6 @@ def logout():
 @app.route('/signup')
 def signup():
     return render_template('registration/signup.html')
-    return render_template('registration.html')
 
 
 
@@ -111,20 +110,23 @@ def managementHome():
 def managementChannels():
     return render_template('management/channels.html')
 
+# テスト処理
+@app.route('/test')
+def test():
+    session.clear()
+    return render_template('common/chats.html')
 
 # チャンネル一覧ページの表示
-@app.route('/')
+@app.route('/channels')
 def index():
-    user_id = session.get('user_id')
+    user_id = session.get('id')
+    print(user_id)
     if user_id is None:
         return redirect('/login')
-
     else:
-        channels = dbConnect.getChannelAll()
+        channels = dbConnect.getUserChannels(user_id)
         channels.reverse()
-    return render_template('user/index.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
-
-
+    return render_template('user/channels.html', channels=channels, user_id=user_id)
 
 
 
@@ -147,9 +149,9 @@ def add_channel():
 
 
 # # チャンネルの更新
-# @app.route('/update_channel', methods=['POST'])
-# def update_channel():
-#     user_id = session.get("user_id")
+#@app.route('/update_channel', methods=['POST'])
+#def update_channel():
+#     user_id = session.get("id")
 #     if user_id is None:
 #         return redirect('/login')
 
@@ -164,29 +166,39 @@ def add_channel():
 
 # チャンネルの削除機能
 @app.route('/delete/<channels_id>')
-def delete_channel(channels_id):
+def delete_channel(channel_id):
     admin = session.get('admin')
     if admin is None:
         return redirect('/login')
     else:
-        channel = dbConnect.getChannelAll(channels_id)
+        channel = dbConnect.getChannelAll(channel_id)
         if channel['admin'] != ["admin"]:
             flash('チャンネルは管理者のみ削除可能です')
             return redirect('/')
         else:
-            dbConnect.getChannelAll(channels_id)
+            dbConnect.getChannelAll(channel_id)
             return redirect('/')
 
 
+# チャンネル詳細ページ表示機能
+@app.route('/detail/<channel_id>')
+def detail(channel_id):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+
+    channel_id = channel_id
+    channel = dbConnect.getChannelById(channel_id)
+    message = dbConnect.getMessageAll(channel_id)
+
+    return render_template('user/channels.html', message=message, channel=channel, user_id=user_id)
 
 
 
-
-
-# # メッセージの投稿!
+# メッセージの投稿機能
 # @app.route('/message', methods=['POST'])
 # def add_message():
-#     user_id = session.get('user_id')
+#     user_id = session.get('id')
 #     if user_id is None:
 #         return redirect('/login')
 

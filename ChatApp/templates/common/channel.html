@@ -1,18 +1,35 @@
-<div class="channels-wrapper">
-    <h1 class="channels-title">チャンネル一覧</h1>
-    <div class="channels-container" id="channels-container">
+{% extends 'common/base.html'%}
+{% block title %}<title>management_channel</title>{% endblock %}
 
-        <!-- DBから取得したチャンネル一覧を描画する。 -->
-        {% for channel in channels %}
-        <div class="channel">
-            <div class="channel-name">{{ channel.name }}</div>
-            <i class="fa-solid fa-pen"></i>
-            <i class="fa-solid fa-trash"></i>
+{% block body %}
+<main>
+    <div class="channels-wrapper">
+        <div class="channels-container">
+            <h1 class="channels-title">チャンネル一覧</h1>
+
+            <!-- チャンネルの登録-->
+            <div class="channel-register">
+                <div class="channel-registrarion">チャンネル追加</div>
+                <div class="circle">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+
+            <div class="channel-list-container" id="channels-container">
+        
+                
+                <div class="channel">
+                    <div class="channel-name"> サンプル</div>
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                
+            </div>
         </div>
-        {% endfor %}
     </div>
-    <!-- チャンネルの登録-->
-    <div class="channel-register">
-        <i class="fa-solid fa-plus"></i>
-    </div>
-</div>
+</main>
+
+{% endblock %}
+
+<!-- DBから取得したチャンネル一覧を描画する。 -->
+                <!-- {% for channel in channels %} -->  <!-- {{ channel.name }} -->  <!-- {% endfor %} -->

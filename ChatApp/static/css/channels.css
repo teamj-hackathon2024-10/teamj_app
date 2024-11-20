@@ -1,0 +1,79 @@
+/*　スマホの画面を作成するので、全てのCSSをメディアクエリで囲む */
+@media screen and (max-width: 430px) {
+    .channels-wrapper{
+        width: 100%;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .channels-title{
+        color: var(--oleeve);
+        font-size: 24px;
+    }
+
+    .channels-container{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .channel-list-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .channel{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .channel-name{
+        font-size: 16px;
+        width: 80%;
+        color: var(--oleeve);
+    }
+
+    .fa-pen{
+        margin-right: 12px;
+        font-size: large;
+    }
+
+    .fa-trash{
+        font-size: large;
+    }
+
+    .channel-register{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .channel-registrarion{
+        font-size: large;
+        color: var(--oleeve);
+    }
+
+    .circle{
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--oleeve);
+        border-radius: 50%;
+        margin-left: 12px;
+        position: relative;
+    }
+
+    .circle .fa-plus{
+        font-size: large;
+        color: var(--oleeve);
+        position: absolute;
+        margin-left: 2px;
+        margin-top: 1px;
+    }
+}

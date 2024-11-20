@@ -16,20 +16,21 @@
             </div>
 
             <div class="channel-list-container" id="channels-container">
-        
-                
+                <!-- DBから取得したチャンネル一覧を描画する。 -->
+                {% for channel in channels %}
                 <div class="channel">
-                    <div class="channel-name"> サンプル</div>
+                    <div class="channel-name">{{ channel.name }}</div>
                     <i class="fa-solid fa-pen"></i>
                     <i class="fa-solid fa-trash"></i>
                 </div>
-                
+                {% endfor %} 
             </div>
         </div>
     </div>
+    {% include 'modal/add-channel-confirmation.html' %}
+    {% include 'modal/add-channel.html' %}
+    {% include 'modal/delete-channel.html' %}
+    {% include 'modal/update-channel.html' %}
+
 </main>
-
 {% endblock %}
-
-<!-- DBから取得したチャンネル一覧を描画する。 -->
-                <!-- {% for channel in channels %} -->  <!-- {{ channel.name }} -->  <!-- {% endfor %} -->

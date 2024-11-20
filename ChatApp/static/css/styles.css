@@ -1,6 +1,8 @@
 /* ログイン後画面のCSS */
 
 @import "base.css";
+@import "channel.css";
+@import "chat.css";
 @import "color.css";
 @import "common.css";
 @import "error.css";

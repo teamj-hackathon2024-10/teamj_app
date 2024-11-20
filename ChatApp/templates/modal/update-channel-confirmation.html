@@ -1,10 +1,9 @@
-<div id="update-channel-modal" class="modal">
+<div id="update-channel-confirmation-modal" class="modal">
     <div class="modal-content">
         <h3 class="modal-title">チャンネル編集</h3>
-        <form class="update-channel-form" method="post">
-            <div class="update-channel-container">
-                <label for="add-channel-input">チャンネル名</label>
-                <input type="text" placeholder="にこもぐ" name="channel-name" id="add-channel-input">
+            <div class="update-channel-confirmation-container">
+                <label for="update-channel-confirmation-input">チャンネル名</label>
+                <div class="channel-name" id="channel-name-display">{{ channel.name }}</div>
             </div>
 
             <div class="add-member-container">
@@ -20,7 +19,16 @@
                 <input type="checkbox" id="member-02" name="checkbox02">
 
             </div>
+
+            <span class="add-channel-confirmation-text">この内容で登録しますか？</span>
+
+            <div class="back-link">
+                <a href="" id="back-link">
+                    <i class="fa-solid fa-angle-left"></i>
+                    <p class="back">戻る</p>
+                </a>
+            </div>
+            
             <button id="add-channel-confirmation-button">登録</button>
-        </form>
     </div>
 </div>

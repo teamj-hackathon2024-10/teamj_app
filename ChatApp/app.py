@@ -114,7 +114,7 @@ def managementChannels():
 @app.route('/test')
 def test():
     session.clear()
-    return render_template('common/chats.html')
+    return render_template('common/chat.html')
 
 # チャンネル一覧ページの表示
 @app.route('/channels')
@@ -127,8 +127,6 @@ def index():
         channels = dbConnect.getUserChannels(user_id)
         channels.reverse()
     return render_template('user/channels.html', channels=channels, user_id=user_id)
-
-
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])

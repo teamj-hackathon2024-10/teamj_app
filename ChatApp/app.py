@@ -96,7 +96,7 @@ def userSignup():
             print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             DBuser = dbConnect.getUser(email)
-            print(DBuser)
+            dbConnect.addUserToChannel(DBuser['id'],'9ED83D6C-8522-4869-BF13-ACD481FC9F0B')
             UserId = str(DBuser['id'])
             session['id'] = UserId
             return redirect('/')
@@ -125,7 +125,7 @@ def index():
         return redirect('/login')
     else:
         channels = dbConnect.getUserChannels(user_id)
-        channels.reverse()
+        # channels.update_at()
     return render_template('user/channels.html', channels=channels, user_id=user_id)
 
 
@@ -189,9 +189,9 @@ def detail(channel_id):
 
     channel_id = channel_id
     channel = dbConnect.getChannelById(channel_id)
-    message = dbConnect.getMessageAll(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
 
-    return render_template('user/channels.html', message=message, channel=channel, user_id=user_id)
+    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
 
 
 

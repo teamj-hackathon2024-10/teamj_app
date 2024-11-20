@@ -47,9 +47,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO UserChannels (user_id, channel_id) VALUES (%s, %s);"
+            sql = "INSERT INTO userchannels (user_id, channel_id) VALUES (%s, %s);"
             cur.execute(sql, (user_id, channel_id ))
-            cur.commit()
+            conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
             abort(500)

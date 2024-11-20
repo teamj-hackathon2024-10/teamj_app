@@ -79,6 +79,21 @@ class dbConnect:
 
 
 
+    def getChannelById(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM channels WHERE id=%s;"
+            cur.execute(sql, (cid))
+            channel = cur.fetchone()
+            return channel
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+
     def getChannelByName(channel_name):
         try:
             conn = DB.getConnection()
@@ -94,7 +109,6 @@ class dbConnect:
             cur.close()
             conn.close()
 
-    # def getChannelById()
 
 
     def updateChannel(uid, newChannelName, newChannelDescription, cid):

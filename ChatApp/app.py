@@ -197,11 +197,11 @@ def detail(channel_id):
     if user_id is None:
         return redirect('/login')
 
-    channel_id = channel_id
-    channel = dbConnect.getChannelById(channel_id)
+    cid = channel_id
+    channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(channel_id)
 
-    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
+    return render_template('user/chats.html', messages=messages, channel=channel, user_id=user_id)
 
 
 

@@ -19,7 +19,7 @@
                 <!-- DBから取得したチャンネル一覧を描画する。 -->
                 {% for channel in channels %}
                 <div class="channel">
-                    <a class="channel-name" href="">{{ channel.name }}</a>
+                    <a class="channel-name" href="{{ url_for('detail',channel_id=channel['channel_id']) }}">{{ channel.name }}</a>
                     <i class="fa-solid fa-pen"></i>
                     <i class="fa-solid fa-trash"></i>
                 </div>

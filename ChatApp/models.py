@@ -156,12 +156,12 @@ class dbConnect:
             conn.close()
 
 
-    def getMessageAll(cid):
+    def getMessageAll(channel_id):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
-            cur.execute(sql, (cid))
+            sql = "SELECT m.id, u.id, name, message FROM messages AS m INNER JOIN users AS u ON m.user_id = u.id WHERE channel_id = %s;"
+            cur.execute(sql, (channel_id))
             messages = cur.fetchall()
             return messages
         except Exception as e:

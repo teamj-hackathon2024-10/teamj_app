@@ -57,6 +57,8 @@ CREATE TABLE userchannels (
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
 INSERT INTO userchannels (user_id, channel_id) VALUES(1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
+INSERT INTO userchannels (user_id, channel_id) VALUES(2, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
+
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

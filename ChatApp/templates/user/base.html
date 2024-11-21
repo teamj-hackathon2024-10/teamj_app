@@ -9,14 +9,10 @@
     rel="stylesheet"
     href="{{url_for('static',filename='css/styles.css')}}"/>
 
-    {% block css %}{% endblock %}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/styles-registration.css')}}"/>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
-      <!-- ファビコン画像挿入 -->
-    <link rel="icon" href="../static/img/logp.pig" />
+
   </head>
   <body>
     <div class="container">
@@ -30,7 +26,7 @@
           <nav class="header__nav nav" id="js-nav">
             <ul class="nav__items nav-items">
                 <li class="nav-items__item"><a href="{{url_for('userhome')}}">ホーム</a></li>
-                <li class="nav-items__item"><a href="{{url_for('userhome')}}">チャンネル一覧</a></li>
+                <li class="nav-items__item"><a href="{{url_for('index')}}">チャンネル一覧</a></li>
                 <li class="nav-items__item"><a href="">基本情報</a></li>
                 <li class="nav-items__item"><a href="{{url_for('login')}}">ログアウト</a></li>
             </ul>
@@ -45,10 +41,10 @@
       {% block body %}
       {% endblock %}
       <footer class="footer">
-        <di class ="footer__inner">
+        <div class ="footer__inner">
             <p>にこもぐ保育園</p>
             <p>☎ XXX-XXX-XXXX</p>
-        </di>
+        </div>
       </footer>
       <!-- ここにそれぞれのHTMLファイルやテンプレートを挿入 -->
     </div>

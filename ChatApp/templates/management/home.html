@@ -1,29 +1,33 @@
-{% extends 'management/base.html' %}
+{% extends 'common/base.html' %}
 {% block title %} <title>home</title> {% endblock %}
 
 {% block body %}
-<div class="home-container">
-    <div class="tommorrow-meals-container">
-        <label for="tomorrow-meals-title">明日の献立</label>
-        <div class="tomorrow-meals-area">
-            <!-- ここに今日の献立の取得結果を表示する。-->
-            <ul class="menu-list">
-                <li class="meal">sample</li>
-            </ul>
-        </div>
-    </div>
-    <div class="allergy-matching-results-container">
-        <label for="allergy-matching-results-title">アレルギー照合結果</label>
-        <div class="allergy-matching-results-area">
-            <!-- ここにアレルギー照合結果の取得結果を表示する。-->
-            <div class="allergy">
-                <ul class="children-allergy">
-                    <li class="child">
-                        
-                    </li>
-                </ul>
+<main>
+    <div class="home-wrapper">
+        <div class="home-container">
+            <div class="tommorrow-meals-container">
+                <p class="tomorrow-meals-title">明日の献立</p>
+                <div class="tomorrow-meals-area">
+                    <!-- ここに今日の献立の取得結果を表示する。-->
+                    <ul class="menu-list">
+                        <li class="meal">sample</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="allergy-matching-results-container">
+                <p class="allergy-matching-results-title">アレルギー照合結果</p>
+                <div class="allergy-matching-results-area">
+                    <!-- ここにアレルギー照合結果の取得結果を表示する。-->
+                    <div class="allergy">
+                        <ul class="children-allergy">
+                            <li class="child">
+                                sample
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 {% endblock %}

@@ -4,7 +4,7 @@ DROP USER 'testuser';
 CREATE USER 'testuser' IDENTIFIED BY 'testuser';
 CREATE DATABASE chatapp;
 USE chatapp
--- GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser';
+GRANT ALL PRIVILEGES ON chatapp.* TO 'testuser';
 
 
 CREATE TABLE users (
@@ -17,6 +17,8 @@ CREATE TABLE users (
 
 );
 INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (1, '高倉 文太','futaba@futaba.com', 'a06a2b6f3b1a099522c2a9a2578a4337cffae2ea874838407ebf22d1028df841', '0799647061', 1);
+INSERT INTO users (id, name, email_address, password, phone_number, admin) VALUES (2, '野原 みさえ','misae@kureyonn.com','e19f7ef7976fb75fe5d83b374f3f3696073f69236370778c177a684b226e5588', '0799222222', 0);
+
 
 
 CREATE TABLE children (
@@ -29,11 +31,15 @@ CREATE TABLE children (
     allergies_PDF varchar(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+INSERT INTO children (id, user_id, name, sex, allergies, birthday) VALUES (1,2, '野原 しんのすけ',0, 1, '2022-05-05');
+
 
 CREATE TABLE classes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL
 );
+INSERT INTO classes (id, name) VALUES (1, 'ひまわり');
+
 
 CREATE TABLE channels (
     id VARCHAR(255) PRIMARY KEY,
@@ -41,6 +47,7 @@ CREATE TABLE channels (
     update_at DATETIME NOT NULL
 );
 INSERT INTO channels (id, name, update_at) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00');
+
 
 CREATE TABLE userchannels (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,7 +58,6 @@ CREATE TABLE userchannels (
 );
 INSERT INTO userchannels (user_id, channel_id) VALUES(1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
 
-
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -61,7 +67,8 @@ CREATE TABLE messages (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (channel_id) REFERENCES channels(id)
 );
-
+INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(1, 1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B", 'お知らせテストですよ。', '2020-01-01 10:10:10-10:00');
+INSERT INTO messages (id, user_id, channel_id, message, datetime) VALUES(2, 1, '9ED83D6C-8522-4869-BF13-ACD481FC9F0B', '園長の文太です。よろしくお願いします。', '2020-01-01 12:10:10-10:00');
 
 CREATE TABLE allergens (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -105,6 +112,8 @@ CREATE TABLE childrenallergens (
     FOREIGN KEY (children_id) REFERENCES children(id),
     FOREIGN KEY (allergen_id) REFERENCES allergens(id)
 );
+INSERT INTO childrenallergens (id, children_id, allergen_id) VALUES (1, 1, 6);
+
 
 CREATE TABLE meals (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -154,6 +163,13 @@ CREATE TABLE mealallergens (
     FOREIGN KEY (allergen_id) REFERENCES allergens(id),
     FOREIGN KEY (meal_id) REFERENCES meals(id)
 );
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (4, 2);
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (6, 2);
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (7, 2);
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (16, 2);
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (6, 3);
+INSERT INTO mealallergens (allergen_id, meal_id) VALUES (7, 4);
+
 
 CREATE TABLE menus (
     id INT AUTO_INCREMENT PRIMARY KEY,

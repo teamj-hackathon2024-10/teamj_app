@@ -10,12 +10,12 @@ app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
 
+# ユーザーホーム画面の表示
 @app.route('/')
 def userhome():
     return render_template(
     'user/userhome.html'
     )
-
 
 
 # ログインページの表示
@@ -46,7 +46,7 @@ def userLogin():
                 if user["admin"] == 0:
                     return redirect('/')
                 else:
-                    return redirect('management-home')#後で@app.routeで書く
+                    return redirect('management-home')
     return redirect('/login')
 
 
@@ -97,40 +97,47 @@ def userSignup():
             print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             DBuser = dbConnect.getUser(email)
-            print(DBuser)
+            dbConnect.addUserToChannel(DBuser['id'],'9ED83D6C-8522-4869-BF13-ACD481FC9F0B')
             UserId = str(DBuser['id'])
             session['id'] = UserId
             return redirect('/')
     return redirect('/signup')
 
+
+
+# 管理者のホーム画面表示
 @app.route('/management-home')
 def managementHome():
     return render_template('management/home.html')
 
+
+
+# 管理者のチャンネルページの表示
 @app.route('/management-channels')
 def managementChannels():
     return render_template('management/channels.html')
+
+
 
 # テスト処理
 @app.route('/test')
 def test():
     session.clear()
-    return render_template('common/channel.html')
+    return render_template('common/chat.html')
+
+
 
 # チャンネル一覧ページの表示
 @app.route('/channels')
 def index():
-    user_id = session.get('user_id')
+    user_id = session.get('id')
+    print(user_id)
     if user_id is None:
-        return redirect('/login')     
-    else: 
-        channels = dbConnect.getChannelAll()
-        channels.reverse()
-    return render_template('user/channels.html', channels=channels, user_id=user_id, meals_id=meals_id, allergens_id=allergens_id )
-
-
-
-
+        return redirect('/login')
+    else:
+        channels = dbConnect.getUserChannels(user_id)
+        # channels.update_at()
+    return render_template('user/channels.html', channels=channels, user_id=user_id)
 
 # チャンネルの追加
 @app.route('/', methods=['POST'])
@@ -153,7 +160,7 @@ def add_channel():
 # # チャンネルの更新
 #@app.route('/update_channel', methods=['POST'])
 #def update_channel():
-#     user_id = session.get("user_id")
+#     user_id = session.get("id")
 #     if user_id is None:
 #         return redirect('/login')
 
@@ -168,39 +175,40 @@ def add_channel():
 
 # チャンネルの削除機能
 @app.route('/delete/<channels_id>')
-def delete_channel(channels_id):
+def delete_channel(channel_id):
     admin = session.get('admin')
     if admin is None:
         return redirect('/login')
     else:
-        channel = dbConnect.getChannelAll(channels_id)
+        channel = dbConnect.getChannelAll(channel_id)
         if channel['admin'] != ["admin"]:
             flash('チャンネルは管理者のみ削除可能です')
             return redirect('/')
         else:
-            dbConnect.getChannelAll(channels_id)
+            dbConnect.getChannelAll(channel_id)
             return redirect('/')
 
 
+
 # チャンネル詳細ページ表示機能
-@app.route('/detail/<channels_id>')
-def detail(channels_id):
-    user_id = session.get("user_id")
+@app.route('/detail/<channel_id>')
+def detail(channel_id):
+    user_id = session.get("id")
     if user_id is None:
         return redirect('/login')
-    
-    channels_id = channels_id
-    channel = dbConnect.getChannelById(channels_id)
-    message = dbConnect.getMessageAll(channels_id)
 
-    return render_template('user/channels.html', message=message, channel=channel, user_id=user_id)
+    channel_id = channel_id
+    channel = dbConnect.getChannelById(channel_id)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
 
 
 
 # メッセージの投稿機能
 # @app.route('/message', methods=['POST'])
 # def add_message():
-#     user_id = session.get('user_id')
+#     user_id = session.get('id')
 #     if user_id is None:
 #         return redirect('/login')
 
@@ -210,10 +218,28 @@ def detail(channels_id):
 #     if message:
 #         dbConnect.createMessage(user_id, channels_id, message)
 
-#     return redirect('/detail/'{channels_id}.format(channels_id = channels_id))
+#     return redirect('/user/chats.html/'{channels_id}.format(channels_id = channels_id))
+
+
+
+## 子供のアレルギー原因食品
+#@app.route('/allergens/<allergen_id>')
+#def allergenMaster(allergen_id):
+#    children_id = session.get('children_id')
+#   if children_id is None:
+#       return redirect('/login')
+    
+#    else:
+#        allergen = dbConnect.getChildrenAllergens(children_id)
+#        allergen.reverse()
+#   return render_template('management/allergen.html', allergen_id=allergen_id, children_id=children_id)
+
+
+
 
 
 
 
 if __name__ == '__main__':
     app.run (host= "0.0.0.0", debug = True)
+    

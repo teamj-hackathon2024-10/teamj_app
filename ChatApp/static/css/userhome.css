@@ -4,15 +4,15 @@ li {
 }
 
 .userhome-meals {
-  color: var(--oleeve);
+  color: green;
   flex-flow: column;
   min-height:500px;
 }
 
 .today-meals{
-  color: var(--oleeve);
+  color:  green;
   padding:1em;
-  border: 3px solid var(--oleeve)en;
+  border: 3px solid  green;
   margin:0.5em auto;
   width:60%;
   height:100%;
@@ -21,7 +21,7 @@ li {
 .today-meals-allergy{
   color: var(--oleeve);
   padding:1em;
-  border: 3px solid var(--oleeve);
+  border: 3px solid  green;
   margin:0.5em auto;
   width:60%;
   height:100%;

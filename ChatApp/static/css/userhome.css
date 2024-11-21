@@ -12,7 +12,8 @@ li {
 .today-meals{
   color:  var(--oleeve);
   padding:1em;
-  border: 3px solid  var(--oleeve);
+  border: 3px solid var(--oleeve);
+  margin:0.5em auto;
   width:60%;
   height:100%;
 }

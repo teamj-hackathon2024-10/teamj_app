@@ -2,5 +2,30 @@
 {% block title %} <title>チャンネル一覧</title> {% endblock %}
 
 {% block body %}
-{% include 'common/channel.html' %}
+<main>
+    <div class="channels-wrapper">
+        <div class="channels-container">
+            <h1 class="channels-title">チャンネル一覧</h1>
+
+            <!-- チャンネルの登録-->
+            <div class="channel-register">
+                <div class="channel-registrarion">チャンネル追加</div>
+                <div class="circle">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+
+            <div class="channel-list-container" id="channels-container">
+                <!-- DBから取得したチャンネル一覧を描画する。 -->
+                {% for channel in channels %}
+                <div class="channel">
+                    <a class="channel-name" href="">{{ channel.name }}</a>
+                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

@@ -3,25 +3,29 @@ li {
   list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
 }
 
+.userhome-main {
+  width: 100%;
+  height:76vh;
+}
+
 .userhome-meals {
-  color: green;
+  color: var(--oleeve);
   flex-flow: column;
-  min-height:500px;
+  height:35vh;
 }
 
 .today-meals{
-  color:  green;
+  color:  var(--oleeve);
   padding:1em;
-  border: 3px solid  green;
+  border: 3px solid var(--oleeve);
   margin:0.5em auto;
   width:60%;
-  height:100%;
 }
 
 .today-meals-allergy{
   color: var(--oleeve);
   padding:1em;
-  border: 3px solid  green;
+  border: 3px solid  var(--oleeve);
   margin:0.5em auto;
   width:60%;
   height:100%;

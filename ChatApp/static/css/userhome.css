@@ -1,3 +1,8 @@
+ul,
+li {
+  list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
+}
+
 .userhome-meals {
   color: var(--oleeve);
   flex-flow: column;
@@ -7,7 +12,16 @@
 .today-meals{
   color: var(--oleeve);
   padding:1em;
-  border: 3px solid green;
+  border: 3px solid var(--oleeve)en;
+  margin:0.5em auto;
+  width:60%;
+  height:100%;
+}
+
+.today-meals-allergy{
+  color: var(--oleeve);
+  padding:1em;
+  border: 3px solid var(--oleeve);
   margin:0.5em auto;
   width:60%;
   height:100%;

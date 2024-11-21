@@ -2,5 +2,35 @@
 {% block title %} <title>chat</title> {% endblock %}
 
 {% block body %}
-{% include 'common/chat.html' %}
+<main>
+    <div class="chat-wrapper">
+        <div class="chat-container">
+            <div class="chat-to">sample</div>
+
+            <div class="chat-list">
+                {% if messages|length > 0 %}{% for message in messages %}
+                {% if message.user_id == user_id %}
+                <div class="my-messages">
+                    <p class="box box-right">{{ message.message }}</p>
+                </div>
+                {% else %}
+                <div class="messages">
+                    <p class="user-name">{{ message.user_name }}</p>
+                    <p class="box box-left">{{ message.message }}</p>
+                </div>
+                {% endif %}{% endfor %}{% else %}
+                <div id="no-message"><p>まだメッセージがありません。</p></div>
+                {% endif %}
+            </div>
+
+            <div class="chat-form">
+                <div class="chat-component">
+                    <div class="chat-from-title">メッセージ入力</div>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <div class="message-input-area"></div>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

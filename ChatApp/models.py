@@ -47,9 +47,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO UserChannels (user_id, channel_id) VALUES (%s, %s);"
+            sql = "INSERT INTO userchannels (user_id, channel_id) VALUES (%s, %s);"
             cur.execute(sql, (user_id, channel_id ))
-            cur.commit()
+            conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
             abort(500)
@@ -70,6 +70,21 @@ class dbConnect:
             cur.execute(sql, (user_id))
             channels = cur.fetchall()
             return channels
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+
+
+    def addChannels(uid, channel_name):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO channels (id, name, update_at) VALUES (%s, %s,NOW());"
+            cur.execute(sql, (channel_name))
+            conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
             abort(500)
@@ -141,12 +156,12 @@ class dbConnect:
             conn.close()
 
 
-    def getMessageAll(cid):
+    def getMessageAll(channel_id):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT id,u.uid, user_name, message FROM messages AS m INNER JOIN users AS u ON m.uid = u.uid WHERE cid = %s;"
-            cur.execute(sql, (cid))
+            sql = "SELECT m.id, u.id, name, message FROM messages AS m INNER JOIN users AS u ON m.user_id = u.id WHERE channel_id = %s;"
+            cur.execute(sql, (channel_id))
             messages = cur.fetchall()
             return messages
         except Exception as e:

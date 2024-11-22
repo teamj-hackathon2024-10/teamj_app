@@ -23,13 +23,13 @@
                     <i class="fa-solid fa-pen"></i>
                     <i class="fa-solid fa-trash"></i>
                 </div>
+                {% include 'modal/add-channel-confirmation.html' %}
+                {% include 'modal/delete-channel-confirmation.html' %}
+                {% include 'modal/update-channel-confirmation.html' %}
                 {% endfor %}
             </div>
         </div>
     </div>
-    {% include 'modal/add-channel.html' %}
-    {% include 'modal/delete-channel.html' %}
-    {% include 'modal/update-channel.html' %}
 
 </main>
 {% endblock %}

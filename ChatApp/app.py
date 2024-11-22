@@ -210,6 +210,19 @@ def detail(channel_id):
 
     return render_template('user/chats.html', messages=messages, channel=channel, user_id=user_id)
 
+# チャンネル詳細ページ表示機能
+@app.route('/detail/<channel_id>')
+def management_detail(channel_id):
+    user_id = session.get("id")
+    if user_id is None:
+        return redirect('/login')
+
+    cid = channel_id
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
+
 
 
 # メッセージの投稿機能

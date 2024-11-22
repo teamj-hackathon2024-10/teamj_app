@@ -3,6 +3,7 @@
 /*　スマホの画面を作成するので、全てのCSSをメディアクエリで囲む */
 @media screen and (max-width: 430px) {
     .registration-wrapper{
+        min-height: 82vh;
         width: 100%;
         padding-top: 60px;
         padding-bottom: 60px;

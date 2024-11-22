@@ -78,21 +78,6 @@ class dbConnect:
             conn.close()
 
 
-    def addChannels(uid, channel_name):
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "INSERT INTO channels (id, name, update_at) VALUES (%s, %s,NOW());"
-            cur.execute(sql, (channel_name))
-            conn.commit()
-        except Exception as e:
-            print(f'エラーが発生しています：{e}')
-            abort(500)
-        finally:
-            cur.close()
-            conn.close()
-
-
 
     def getChannelById(cid):
         try:

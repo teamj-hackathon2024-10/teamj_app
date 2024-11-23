@@ -174,3 +174,17 @@ class dbConnect:
 
 
 
+    def getChildrenNameByUserId(user_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT name FROM children WHERE user_id=%s;"
+            cur.execute(sql, (user_id))
+            child_name = cur.fetchall()
+            return child_name
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()

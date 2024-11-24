@@ -143,16 +143,16 @@ def index():
     return render_template('user/channels.html', channels=channels, user_id=user_id)
 
 # チャンネルの追加
-@app.route('/', methods=['POST'])
+@app.route('/channels', methods=['POST'])
 def add_channel():
-   admin = session.get('admin')
-   if admin is None:
+   uid = session.get('admin')
+   if uid is None:
        return redirect('/login')
    channel_name = request.form.get('channelTitle')
    channel = dbConnect.getChannelByName(channel_name)
    if channel == None:
        channel_description = request.form.get('channelDescription')
-       dbConnect.addChannel(admin, channel_name, channel_description)
+       dbConnect.addChannels(uid, channel_name, channel_description)
        return redirect('/')
    else:
        error = '既に同じ名前のチャンネルがあります'
@@ -177,19 +177,19 @@ def add_channel():
 
 
 # チャンネルの削除機能
-@app.route('/delete/<channels_id>')
-def delete_channel(channel_id):
+@app.route('/delete/<channel_name>')
+def delete_channel(channel_name):
     admin = session.get('admin')
     if admin is None:
-        return redirect('/login')
+        return redirect('/management-home')
     else:
-        channel = dbConnect.getChannelAll(channel_id)
-        if channel['admin'] != ["admin"]:
+        channel = dbConnect.getChannelByName(channel_name)
+        if channel('admin') != ("admin"):
             flash('チャンネルは管理者のみ削除可能です')
-            return redirect('/')
+            return redirect('/channels')
         else:
-            dbConnect.getChannelAll(channel_id)
-            return redirect('/')
+            dbConnect.deleteChannel(channel_name)
+            return redirect('/channels')
 
 
 
@@ -236,6 +236,44 @@ def add_message():
         dbConnect.createMessage(user_id, channel_id, message)
 
     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
+
+
+
+
+# ## ユーザーの基本情報編集
+# #@app.route('/updateuser', methods=['POST'])
+# #def update_user():
+# #    user_id = session.get("user_id")
+# #    if user_id is None:
+# #        return redirect('/user/userhome')
+    
+# #    name = request.form.get('name')
+# #    phone_number = request.form.get('phone_number')
+# #    email = request.form.get('email')
+# #    password = request.form.get('password')
+#     child_name = request.form.get('child_name')
+#     child_sex = request.form.get('sex')
+#     child_birthday = request.form.get('birthday')
+#     allergies = 1
+
+#     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+
+#     if name == '' or phone_number == '' or email == '' or password == '' or child_name == '' or child_sex == '' or child_birthday == '':
+#         flash('入力してください')
+#     elif re.match(pattern, email) is None:
+#         flash('正しいメールアドレスではありません')
+#     else:
+#         password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+
+#         print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+#         dbConnect.updateUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
+#         DBuser = dbConnect.getUser(user_id)
+#         session['id'] = DBuser['id']
+#         return redirect('/')
+#     return render_template('/user/user_information.html', user_id = user_id)
+
+
+
 
 
 

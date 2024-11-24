@@ -234,6 +234,7 @@ def add_message():
 
     message = request.form.get('message')
     channel_id = request.form.get('channel_id')
+    print(f"channel_id: {channel_id}")
 
     if message:
         dbConnect.createMessage(user_id, channel_id, message)

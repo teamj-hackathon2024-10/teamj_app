@@ -170,7 +170,7 @@ class dbConnect:
         finally:
             cur.close()
             conn.close()
-            conn.close()
+
 
 
 

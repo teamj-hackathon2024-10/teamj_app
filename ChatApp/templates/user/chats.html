@@ -26,6 +26,7 @@
 
             <div class="chat-form">
                 <form method="POST" action="{{ url_for('add_message') }}">
+                    <input type="hidden" name="channel_id" value="{{ channel.id }}">
                     <div class="chat-component">
                         <label for="message" class="chat-from-title">メッセージ入力</label>
                         <textarea id="message" name="message" class="message-input-area"></textarea>

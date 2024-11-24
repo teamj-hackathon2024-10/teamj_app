@@ -23,13 +23,20 @@
                 {% endif %}
             </div>
 
+
             <div class="chat-form">
-                <div class="chat-component">
-                    <div class="chat-from-title">メッセージ入力</div>
-                    <i class="fa-solid fa-paper-plane"></i>
-                </div>
-                <div class="message-input-area"></div>
+                <form method="POST" action="{{ url_for('add_message') }}">
+                    <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                    <div class="chat-component">
+                        <label for="message" class="chat-from-title">メッセージ入力</label>
+                        <textarea id="message" name="message" class="message-input-area"></textarea>
+                    </div>
+                    <button type="submit" class="send-message-button">
+                        <i class="fa-solid fa-paper-plane"></i> 送信
+                    </button>
+                </form>
             </div>
+
         </div>
     </div>
 </main>

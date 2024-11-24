@@ -128,7 +128,7 @@ def managementChannels():
 @app.route('/test')
 def test():
     session.clear()
-    return render_template('modal/update-channel.html')
+    return render_template('modal/update-channel-confirmation.html')
 
 # チャンネル一覧ページの表示
 @app.route('/channels')

@@ -117,15 +117,11 @@ def managementHome():
 def managementChannels():
     return render_template('management/channels.html')
 
-
-
 # テスト処理
 @app.route('/test')
 def test():
     session.clear()
-    return render_template('common/chat.html')
-
-
+    return render_template('modal/update-channel.html')
 
 # チャンネル一覧ページの表示
 @app.route('/channels')

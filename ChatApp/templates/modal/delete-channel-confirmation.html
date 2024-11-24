@@ -1,28 +1,42 @@
+{% extends 'common/base.html'%}
+{% block title %}<title>management_channel</title>{% endblock %}
+
+{% block body %}
+
+<!-- base.htmlのインクルードを行うコードを全てのリンクが整ったら削除する。-->
+<main>
+
+
 <div id="delete-channel-confirmation-modal" class="modal">
     <div class="modal-content">
         <h3 class="modal-title">チャンネル削除</h3>
             <div class="delete-channel-confirmation-container">
                 <label for="delete-channel-confirmation">チャンネル名</label>
-                <div class="channel-name" id="channel-name-display">{{ channel.name }}</div>
+                <div class="channel-name" id="channel-name-display">もぐこちゃん</div>
+            </div>
+
+            <div class="delete-member-container">
+                <div class="delete-member-header">メンバー</div>
+                <div class="deleted-member">
+                    <div class="brank"></div>
+                    <p class="member">にこもぐ</p>
+                </div>
+                <div class="deleted-member">
+                    <div class="brank"></div>
+                    <p class="member">もぐこ</p>
+                </div>
             </div>
 
             <span class="add-channel-confirmation-text">この内容で削除しますか？</span>
 
-            <div class="delete-member-container">
-                <div class="delete-member-list">
-                    <div class="delete-member-header">メンバー</div>
-                    <p class="deleted-member">にこもぐ</p>
-                    <p class="deleted-member">もぐこ</p>
-                </div>
-            </div>
-
-            <div class="back-link">
-                <a href="" id="back-link">
-                    <i class="fa-solid fa-angle-left"></i>
-                    <p class="back">戻る</p>
-                </a>
-            </div>
+            <a href="" id="back-link" class="back-link">
+                <i class="fa-solid fa-angle-left"></i>
+                <p class="back">戻る</p>
+            </a>
             
             <button id="add-channel-confirmation-button">削除</button>
     </div>
 </div>
+
+</main>
+{% endblock %}

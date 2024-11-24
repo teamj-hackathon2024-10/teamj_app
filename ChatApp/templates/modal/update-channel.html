@@ -1,3 +1,11 @@
+{% extends 'common/base.html'%}
+{% block title %}<title>management_channel</title>{% endblock %}
+
+{% block body %}
+
+<!-- base.htmlのインクルードを行うコードを全てのリンクが整ったら削除する。-->
+<main>
+
 <div id="update-channel-modal" class="modal">
     <div class="modal-content">
         <h3 class="modal-title">チャンネル編集</h3>
@@ -13,14 +21,21 @@
                     <p class="add-member-header-addtion">追加</p>
                 </div>
 
-                <label for="member-01" class="add-member-checkbox">にこもぐ</label>
-                <input type="checkbox" id="member-01" name="checkbox01">
+                <div class="add-member-checkbox">
+                    <label for="member-01" class="add-member-checkbox">にこもぐ</label>
+                    <input type="checkbox" id="member-01" name="checkbox01">
+                </div>
 
-                <label for="member-02" class="add-member-checkbox">もぐこ</label>
-                <input type="checkbox" id="member-02" name="checkbox02">
+                <div class="add-member-checkbox">
+                    <label for="member-02" class="add-member-checkbox">もぐこ</label>
+                    <input type="checkbox" id="member-02" name="checkbox02">
+                </div>
 
             </div>
             <button id="add-channel-confirmation-button">登録</button>
         </form>
     </div>
 </div>
+
+</main>
+{% endblock %}

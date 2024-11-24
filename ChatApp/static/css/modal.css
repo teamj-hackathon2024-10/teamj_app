@@ -1,0 +1,217 @@
+@media screen and (max-width: 430px) {
+    .modal{
+        position: fixed;
+        z-index: 20;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        display: flex;
+        background-color: rgba(240, 240, 240, 0.85);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*
+    #add-channel-modal,
+    #add-channel-confirmation-modal,
+    #delete-channel-modal,
+    #delete-channel-confirmation-modal,
+    #update-channel-modal,
+    #update-channel-confirmation-modal {
+        display: none;
+    }
+    */
+
+    .modal-content{
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%; /* 幅をデバイスサイズに応じて調整 */
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 120px;
+
+        position: relative;
+    }
+
+    .modal-title{
+        color: var(--oleeve);
+        font-size: large;
+    }
+
+    .add-channel-form,
+    .delete-channel-form,
+    .update-channel-form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add-channel-container,.add-channel-confirmation-container,
+    .update-channel-container,.delete-channel-confirmation-container,
+    .update-channel-confirmation-container
+    {
+        width: 100%;
+        display: flex;
+        margin-bottom: 24px;
+    }
+
+    .delete-channel-container{
+        display: flex;
+        align-items: center;
+        width: 80%;
+    }
+
+    
+    .add-channel-container label{
+        flex:1;
+        margin-right: 4px;
+        margin-top: 8px;
+    }
+    
+    .delete-channel-container label{
+        flex:1;
+    }
+
+    .update-channel-container label{
+        flex:1;
+        margin-right: 4px;
+        margin-top: 8px;
+    }
+
+    .add-channel-container input{
+        flex:3;
+    }
+
+    .update-channel-container input{
+        flex:3;
+    }
+
+    .channel-name{
+        flex: 1;
+    }
+
+
+    .add-channel-confirmation-container div{
+        flex:2;
+        color: var(--balck);
+        font-size: 1rem;
+    }
+
+    .delete-channel-confirmation-container div{
+        flex:2;
+        color: var(--balck);
+        font-size: 1rem;
+    }
+
+    .delete-channel-container p{
+        flex: 1;
+    }
+
+    .add-channel-confirmation-text{
+        color: var(--red);
+        font-size: 2rem;
+        margin-bottom: 24px;
+    }
+
+    .delete-member-container{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .delete-member-header{
+        width: 100%;
+    }
+
+    .deleted-member{
+        width: 100%;
+        display: flex;
+    }
+
+    .brank{
+        width: 50%;
+        margin-right: 4px;
+        margin-top: 8px;
+    }
+
+    .add-member-container{
+        width: 80%;
+        margin-bottom: 24px;
+    }
+
+    .add-member-header{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* ヘッダー内の要素を垂直方向に中央揃え */
+        margin-bottom: 8px; /* チェックボックスとの間に適切なスペースを追加 */
+    }
+
+    .add-member-header p{
+        flex: 1;
+        align-items: center;
+    }
+    
+    
+    .add-member-checkbox{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-member-checkbox label{
+        
+    }
+
+    .add-member-checkbox input {
+
+    }
+
+    
+    .back-link{
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+    }
+
+   .fa-angle-left {
+        flex: 1;
+        margin-right: 4px;
+    }
+
+    .back-link a p {
+        flex: 1;
+    }
+
+
+    .add-channel-form button{
+        padding: 16px 48px;
+        color: var(--white);
+        background-color: var(--rightgreen);
+        border-radius:16px ;
+        border-width: 0.1rem;
+    }
+
+    .modal-content button{
+        padding: 16px 48px;
+        color: var(--white);
+        background-color: var(--rightgreen);
+        border-radius:16px ;
+        border-width: 0.1rem;
+    }
+}

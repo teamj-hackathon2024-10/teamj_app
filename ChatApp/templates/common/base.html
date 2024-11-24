@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
@@ -25,15 +26,18 @@
       <header class="header">
         <div class="header__inner">
           <div class="header__title header-title">
-            <a href="{{url_for('userhome')}}">
+            <a href="{{url_for('managementHome')}}">
               <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo">
             </a>
           </div>
           <nav class="header__nav nav" id="js-nav">
             <ul class="nav__items nav-items">
-                <li class="nav-items__item"><a href="{{url_for('userhome')}}">ホーム</a></li>
-                <li class="nav-items__item"><a href="{{url_for('userhome')}}">チャンネル一覧</a></li>
-                <li class="nav-items__item"><a href="">基本情報</a></li>
+                <li class="nav-items__item"><a href="{{url_for('managementHome')}}">ホーム</a></li>
+                <li class="nav-items__item"><a href="{{url_for('managementChannels')}}">チャンネル一覧</a></li>
+                <li class="nav-items__item"><a href="">献立一覧</a></li>
+                <li class="nav-items__item"><a href="">メニュ一覧</a></li>
+                <li class="nav-items__item"><a href="">アレルギーあり園児一覧</a></li>
+                <li class="nav-items__item"><a href="">アレルギーマスタ</a></li>
                 <li class="nav-items__item"><a href="{{url_for('login')}}">ログアウト</a></li>
             </ul>
           </nav>
@@ -47,10 +51,10 @@
       {% block body %}
       {% endblock %}
       <footer class="footer">
-        <div class ="footer__inner">
+        <di class ="footer__inner">
             <p>にこもぐ保育園</p>
             <p>☎ XXX-XXX-XXXX</p>
-        </div>
+        </di>
       </footer>
       <!-- ここにそれぞれのHTMLファイルやテンプレートを挿入 -->
     </div>

@@ -1,0 +1,31 @@
+.main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--oleeve) ;
+  margin: auto;
+  width:60%;
+  height:100%;
+  text-align: center;
+}
+
+.my-table {
+  border-collapse: collapse;      /* 枠線を細くする */
+  th, td {                        /* th と td に対して */
+    border: 2px  var(--pink);      /* ピンクの枠線を引く */
+  }
+  th {                            /* th に対しては */
+    background-color: var(--white); /* 背景を白にする */
+  }
+ 
+  td:nth-child(1) {               /* td の1列目は */
+    width: 5rem;                  /* 幅を5文字分にする */
+  }
+  td:nth-child(2) {               /* td の2列目は */
+    width: 5rem;
+  }
+  td:nth-child(3) {               /* td の3列目は */
+    width: 3rem;                  /* 幅を3文字分にして */
+    text-align: right;            /* テキストを右寄せにする */
+  }
+}

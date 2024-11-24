@@ -1,9 +1,29 @@
 {% extends 'management_base.html' %}{% block title %}
-<title>献立一覧</title>
-{% endblock %}{% block body %}
+<title>献立一覧</title>{% endblock %}
 
-<div>
-
-</div>
-
+{% block body %}
+<main>
+  <div class="main">
+      <div class="children's_allergy">
+          <h3 align="center">献立一覧</h3>
+            <table class="my-table">
+              <tr><th style="width:82vh">日付</th></tr>
+              <tr><td>20204/11/23</td></tr>
+              <tr><th style="width:82vh">メニュー</th></tr>
+              <tr><td>たまごサンド、牛乳、サラダ</td></tr>
+              <tr><th style="width:82vh">アレルギー原因食品</th></tr>
+              <tr><td>たまご、牛乳、小麦</td></tr>
+            </table><br>
+            <table class="my-table">
+              <tr><th style="width:82vh">日付</th></tr>
+              <tr><td>20204/11/24</td></tr>
+              <tr><th style="width:82vh">メニュー</th></tr>
+              <tr><td>カレーライス</td></tr>
+              <tr><th style="width:82vh">アレルギー原因食品</th></tr>
+              <tr><td>米、小麦</td></tr>
+            </table>
+      </div>
+  </div>
+</main>
+{% endblock %}{% block script %}
 {% endblock %}

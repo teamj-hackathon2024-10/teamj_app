@@ -3,15 +3,10 @@ li {
   list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
 }
 
-.userhome-main {
-  width: 100%;
-  height:76vh;
-}
-
 .userhome-meals {
   color: var(--oleeve);
   flex-flow: column;
-  height:35vh;
+  min-height:500px;
 }
 
 .today-meals{
@@ -20,6 +15,7 @@ li {
   border: 3px solid var(--oleeve);
   margin:0.5em auto;
   width:60%;
+  height:100%;
 }
 
 .today-meals-allergy{

@@ -19,17 +19,17 @@
                 <!-- DBから取得したチャンネル一覧を描画する。 -->
                 {% for channel in channels %}
                 <div class="channel">
-                    <div class="channel-name">{{ channel.name }}</div>
+                    <a class="channel-name" href="{{ url_for('management_detail',channel_id=channel['channel_id']) }}">{{ channel.name }}</a>
                     <i class="fa-solid fa-pen"></i>
                     <i class="fa-solid fa-trash"></i>
                 </div>
+                {% include 'modal/add-channel-confirmation.html' %}
+                {% include 'modal/delete-channel-confirmation.html' %}
+                {% include 'modal/update-channel-confirmation.html' %}
                 {% endfor %}
             </div>
         </div>
     </div>
-    {% include 'modal/add-channel.html' %}
-    {% include 'modal/delete-channel.html' %}
-    {% include 'modal/update-channel.html' %}
 
 </main>
 {% endblock %}

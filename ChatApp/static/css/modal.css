@@ -56,20 +56,25 @@
     }
 
     .add-channel-container,.add-channel-confirmation-container,
-    .update-channel-container,.delete-channel-confirmation-container,
-    .update-channel-confirmation-container
+    .update-channel-container,.delete-channel-confirmation-container
     {
         width: 100%;
         display: flex;
         margin-bottom: 24px;
     }
 
-    .delete-channel-container{
+    .delete-channel-container{ 
         display: flex;
         align-items: center;
         width: 80%;
     }
 
+    .update-channel-confirmation-container{
+        display: flex;
+        align-items: center;
+        width: 60%;
+        
+    }
     
     .add-channel-container label{
         flex:1;
@@ -85,6 +90,10 @@
         flex:1;
         margin-right: 4px;
         margin-top: 8px;
+    }
+
+    .update-channel-confirmation-container label{
+        flex: 1;
     }
 
     .add-channel-container input{
@@ -111,6 +120,14 @@
         color: var(--balck);
         font-size: 1rem;
     }
+
+    .update-channel-confirmation-container div{
+        flex:1;
+        color: var(--balck);
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
 
     .delete-channel-container p{
         flex: 1;
@@ -146,7 +163,7 @@
     }
 
     .add-member-container{
-        width: 80%;
+        width: 60%;
         margin-bottom: 24px;
     }
 

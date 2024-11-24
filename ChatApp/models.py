@@ -111,12 +111,12 @@ class dbConnect:
 
 
 
-    def updateChannel(uid, newChannelName, newChannelDescription, cid):
+    def updateChannel(newChannelName,cid):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "UPDATE channels SET uid=%s, name=%s, abstract=%s WHERE id=%s;"
-            cur.execute(sql, (uid, newChannelName, newChannelDescription, cid))
+            sql = "UPDATE channels SET name=%s, update_at=NOW() WHERE id=%s;"
+            cur.execute(sql, (newChannelName, cid))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
@@ -157,12 +157,12 @@ class dbConnect:
             conn.close()
 
 
-    def createMessage(uid, cid, message):
+    def createMessage(user_id, channel_id, message):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(uid, cid, message) VALUES(%s, %s, %s)"
-            cur.execute(sql, (uid, cid, message))
+            sql = "INSERT INTO messages(user_id, channel_id, message,datetime) VALUES(%s, %s, %s, NOW())"
+            cur.execute(sql, (user_id, channel_id, message))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
@@ -174,3 +174,17 @@ class dbConnect:
 
 
 
+    def getChildrenNameByUserId(user_id):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT name FROM children WHERE user_id=%s;"
+            cur.execute(sql, (user_id))
+            child_name = cur.fetchall()
+            return child_name
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()

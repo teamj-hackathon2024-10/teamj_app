@@ -4,6 +4,9 @@
         width: 100%;
         padding-top: 60px;
         padding-bottom: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
     }
 
     .channels-title{
@@ -12,7 +15,7 @@
     }
 
     .channels-container{
-        width: 90%;
+        width: 80%;
         display: flex;
         flex-direction: column;
         justify-content: center;

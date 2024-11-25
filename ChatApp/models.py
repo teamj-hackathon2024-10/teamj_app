@@ -78,6 +78,37 @@ class dbConnect:
             conn.close()
 
 
+    def getChannelMembers(cid):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = """SELECT * FROM users
+            INNER JOIN userchannels
+            ON userchannels.user_id = users.id
+            WHERE userchannles.channel_id = %s"""
+            cur.execute(sql, (cid))
+            users = cur.fetchall()
+            return users
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+
+    def addChannel(id, newChannelName):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO channels (uid, name,update_at ) VALUES (%s, %s, NOW());"
+            cur.execute(sql, (id, newChannelName))
+            conn.commit()
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
 
     def getChannelById(cid):
         try:

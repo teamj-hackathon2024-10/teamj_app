@@ -8,18 +8,25 @@
             <div class="chat-to">sample</div>
 
             <div class="chat-list">
-                {% if messages|length > 0 %}{% for message in messages %}
-                {% if message.user_id == user_id %}
-                <div class="my-messages">
-                    <p class="box box-right">{{ message.message }}</p>
-                </div>
+                {% if messages|length > 0 %}
+                    {% for message in messages %}
+                        {% if message.user_id == user_id %}
+                            <!-- 自分のメッセージ -->
+                            <div class="my-messages">
+                                <p class="box box-right">{{ message.message }}</p>
+                            </div>
+                        {% else %}
+                            <!-- 他のユーザーのメッセージ -->
+                            <div class="messages">
+                                <p class="user-name">{{ message.user_name }}</p>
+                                <p class="box box-left">{{ message.message }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 {% else %}
-                <div class="messages">
-                    <p class="user-name">{{ message.user_name }}</p>
-                    <p class="box box-left">{{ message.message }}</p>
-                </div>
-                {% endif %}{% endfor %}{% else %}
-                <div id="no-message"><p>まだメッセージがありません。</p></div>
+                    <div id="no-message">
+                        <p>まだメッセージがありません。</p>
+                    </div>
                 {% endif %}
             </div>
 

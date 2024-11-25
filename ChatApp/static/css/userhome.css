@@ -1,12 +1,16 @@
 ul,
 li {
   list-style: none;  /* 「・」がデフォルトで表示されるため非表示に変更 */
+  padding-left: 0;
+  display: list-item;
+  text-align:left
 }
 
 .userhome-meals {
   color: var(--oleeve);
   flex-flow: column;
   min-height:500px;
+  min-width: 320px;
 }
 
 .today-meals{

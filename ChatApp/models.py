@@ -145,7 +145,15 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT m.id, u.id, name, message FROM messages AS m INNER JOIN users AS u ON m.user_id = u.id WHERE channel_id = %s;"
+            sql = """
+            SELECT m.id AS message_id, u.id AS user_id, u.name AS user_name,
+                   m.message, m.datetime
+            FROM messages AS m
+            INNER JOIN users AS u
+            ON m.user_id = u.id
+            WHERE m.channel_id = %s
+            ORDER BY m.datetime ASC;
+            """
             cur.execute(sql, (channel_id))
             messages = cur.fetchall()
             return messages

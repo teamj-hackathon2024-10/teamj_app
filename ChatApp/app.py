@@ -43,10 +43,12 @@ def userLogin():
                 flash('パスワードが間違っています!')
             else:
                 session['id'] = user["id"]
-                if user["admin"] == 0:
-                    return redirect('/')
-                else:
+                if user['admin'] == 1:
+                    session['admin'] = 1
                     return redirect('management-home')
+                else:
+                    session['admin'] = 0
+                    return redirect('/')
     return redirect('/login')
 
 
@@ -105,6 +107,21 @@ def userSignup():
 
 
 
+# チャンネル一覧ページの表示
+@app.route('/channels')
+def index():
+    user_id = session.get('id')
+    print(user_id)
+    if user_id is None:
+        return redirect('/login')
+    else:
+        channels = dbConnect.getUserChannels(user_id)
+        # channels.update_at()
+    return render_template('user/channels.html', channels=channels, user_id=user_id)
+
+
+
+
 # 管理者のホーム画面表示
 @app.route('/management-home')
 def managementHome():
@@ -130,20 +147,24 @@ def test():
     session.clear()
     return render_template('modal/update-channel-confirmation.html')
 
-# チャンネル一覧ページの表示
-@app.route('/channels')
-def index():
-    user_id = session.get('id')
-    print(user_id)
+
+# 管理者チャンネル詳細ページ表示機能
+@app.route('/management-detail/<channel_id>')
+def management_detail(channel_id):
+    user_id = session.get("id")
     if user_id is None:
         return redirect('/login')
-    else:
-        channels = dbConnect.getUserChannels(user_id)
-        # channels.update_at()
-    return render_template('user/channels.html', channels=channels, user_id=user_id)
+
+    cid = channel_id
+    channel = dbConnect.getChannelById(cid)
+    messages = dbConnect.getMessageAll(channel_id)
+
+    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
+
+
 
 # チャンネルの追加
-@app.route('/channels', methods=['POST'])
+@app.route('/management-channels', methods=['POST'])
 def add_channel():
    uid = session.get('admin')
    if uid is None:
@@ -157,23 +178,6 @@ def add_channel():
    else:
        error = '既に同じ名前のチャンネルがあります'
        return render_template('error/error.html', error_message=error)
-
-
-
-# # チャンネルの更新
-#@app.route('/update_channel', methods=['POST'])
-#def update_channel():
-#     user_id = session.get("id")
-#     if user_id is None:
-#         return redirect('/login')
-
-#     channel_id = request.form.get('channel_id')
-#     channel_name = request.form.get('channelTittle')
-#     channel_description = request.form.get('channelDescription')
-
-#     dbConnect.updateChannel('user_id, channel_name, channel_description, channel_id')
-#     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
-
 
 
 # チャンネルの削除機能
@@ -192,6 +196,21 @@ def delete_channel(channel_name):
             return redirect('/channels')
 
 
+# # チャンネルの更新
+#@app.route('/update_channel', methods=['POST'])
+#def update_channel():
+#     user_id = session.get("id")
+#     if user_id is None:
+#         return redirect('/login')
+
+#     channel_id = request.form.get('channel_id')
+#     channel_name = request.form.get('channelTittle')
+#     channel_description = request.form.get('channelDescription')
+
+#     dbConnect.updateChannel('user_id, channel_name, channel_description, channel_id')
+#     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
+
+
 
 # チャンネル詳細ページ表示機能
 @app.route('/detail/<channel_id>')
@@ -206,19 +225,6 @@ def detail(channel_id):
 
     return render_template('user/chats.html', messages=messages, channel=channel, user_id=user_id)
 
-# 管理者チャンネル詳細ページ表示機能
-@app.route('/management-detail/<channel_id>')
-def management_detail(channel_id):
-    user_id = session.get("id")
-    if user_id is None:
-        return redirect('/login')
-
-    cid = channel_id
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(channel_id)
-
-    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
-
 
 
 #メッセージの投稿機能
@@ -230,10 +236,11 @@ def add_message():
 
     message = request.form.get('message')
     channel_id = request.form.get('channel_id')
-    print(f"channel_id: {channel_id}")
+
 
     if message:
         dbConnect.createMessage(user_id, channel_id, message)
+        flash("メッセージが送信されました！")
 
     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
 
@@ -246,7 +253,7 @@ def add_message():
 # #    user_id = session.get("user_id")
 # #    if user_id is None:
 # #        return redirect('/user/userhome')
-    
+
 # #    name = request.form.get('name')
 # #    phone_number = request.form.get('phone_number')
 # #    email = request.form.get('email')

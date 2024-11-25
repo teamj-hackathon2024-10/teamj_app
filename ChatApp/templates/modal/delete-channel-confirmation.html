@@ -1,9 +1,10 @@
-<div id="delete-channel-confirmation-modal" class="modal">
+<div id="delete-channel-confirmation-modal" class="modal" data-modal-confirm="delete-channel-confirmation-modal">
     <div class="modal-content">
-        <h3 class="modal-title">チャンネル削除</h3>
+        <form action="/delete" method="post">
+            <h3 class="modal-title">チャンネル削除</h3>
             <div class="delete-channel-confirmation-container">
                 <label for="delete-channel-confirmation">チャンネル名</label>
-                <div class="channel-name" id="channel-name-display">もぐこちゃん</div>
+                <div class="channel-name" id="deleted-channel-name-display">もぐこちゃん</div>
             </div>
 
             <div class="delete-member-container">
@@ -25,6 +26,7 @@
                 <p class="back">戻る</p>
             </a>
             
-            <button id="add-channel-confirmation-button">削除</button>
+            <button id="delete-channel-confirmation-button">削除</button>
+        </form>
     </div>
 </div>

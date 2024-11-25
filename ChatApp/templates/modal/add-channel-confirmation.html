@@ -1,9 +1,10 @@
-<div id="add-channel-confirmation-modal" class="modal">
+<div id="add-channel-confirmation-modal" class="modal" data-modal="add-channel-confirmation-modal">
     <div class="modal-content">
-        <h3 class="modal-title">チャンネル登録</h3>
+        <form action="/" method="post">
+            <h3 class="modal-title">チャンネル登録</h3>
             <div class="add-channel-confirmation-container">
                 <label for="add-channel-confirmation">チャンネル名</label>
-                <div class="channel-name" id="channel-name-display">もぐこちゃん</div>
+                <input type="text" name="channel-name" id="add-channel-display">
             </div>
 
             <span class="add-channel-confirmation-text">この内容で登録しますか？</span>
@@ -13,7 +14,8 @@
                 <p class="back">戻る</p>
             </a>
             
-            <button id="add-channel-confirmation-button">登録</button>
+            <button id="add-channel-confirmation-button">確定</button>
+        </form>
     </div>
 </div>
 

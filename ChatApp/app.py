@@ -111,13 +111,14 @@ def userSignup():
 @app.route('/channels')
 def index():
     user_id = session.get('id')
-    print(user_id)
+    admin=session.get('admin')
+    print(admin,'admin')
     if user_id is None:
         return redirect('/login')
     else:
         channels = dbConnect.getUserChannels(user_id)
         # channels.update_at()
-    return render_template('user/channels.html', channels=channels, user_id=user_id)
+    return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin)
 
 
 
@@ -125,21 +126,21 @@ def index():
 # 管理者のホーム画面表示
 @app.route('/management-home')
 def managementHome():
-    return render_template('management/home.html')
+    admin=session.get('admin')
+    return render_template('management/home.html',admin=admin)
 
 
-
-# 管理者のチャンネルページの表示
-@app.route('/management-channels')
-def managementChannels():
-    user_id = session.get('id')
-    print(user_id)
-    if user_id is None:
-        return redirect('/login')
-    else:
-        channels = dbConnect.getUserChannels(user_id)
-        # channels.update_at()
-    return render_template('common/channel.html', channels=channels, user_id=user_id)
+# # 管理者のチャンネルページの表示
+# @app.route('/management-channels')
+# def managementChannels():
+#     user_id = session.get('id')
+#     print(user_id)
+#     if user_id is None:
+#         return redirect('/login')
+#     else:
+#         channels = dbConnect.getUserChannels(user_id)
+#         # channels.update_at()
+#     return render_template('common/channel.html', channels=channels, user_id=user_id)
 
 # テスト処理
 @app.route('/test')
@@ -148,18 +149,18 @@ def test():
     return render_template('modal/update-channel-confirmation.html')
 
 
-# 管理者チャンネル詳細ページ表示機能
-@app.route('/management-detail/<channel_id>')
-def management_detail(channel_id):
-    user_id = session.get("id")
-    if user_id is None:
-        return redirect('/login')
+# # # 管理者チャンネル詳細ページ表示機能
+# @app.route('/management-detail/<channel_id>')
+# def management_detail(channel_id):
+#     user_id = session.get("id")
+#     if user_id is None:
+#         return redirect('/login')
 
-    cid = channel_id
-    channel = dbConnect.getChannelById(cid)
-    messages = dbConnect.getMessageAll(channel_id)
+#     cid = channel_id
+#     channel = dbConnect.getChannelById(cid)
+#     messages = dbConnect.getMessageAll(channel_id)
 
-    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
+#     return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id)
 
 
 
@@ -216,14 +217,15 @@ def delete_channel(channel_name):
 @app.route('/detail/<channel_id>')
 def detail(channel_id):
     user_id = session.get("id")
+    admin=session.get('admin')
+    print(admin,'admin')
     if user_id is None:
         return redirect('/login')
-
     cid = channel_id
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(channel_id)
 
-    return render_template('user/chats.html', messages=messages, channel=channel, user_id=user_id)
+    return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id,admin=admin)
 
 
 

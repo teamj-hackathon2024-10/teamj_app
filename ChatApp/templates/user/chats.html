@@ -1,10 +1,10 @@
-{% extends 'user/base.html'%}
+{% extends 'common/base.html'%}
 {% block title %} <title>chat</title> {% endblock %}
 
 {% block body %}
 <main>
     <div class="chat-wrapper">
-        <div class="chat-container">
+        <class="chat-container">
             <div class="chat-to">sample</div>
 
             <div class="chat-list">
@@ -32,19 +32,19 @@
 
 
             <div class="chat-form">
-                <form method="POST" action="{{ url_for('add_message') }}">
-                    <input type="hidden" name="channel_id" value="{{ channel.id }}">
-                    <div class="chat-component">
-                        <label for="message" class="chat-from-title">メッセージ入力</label>
-                        <textarea id="message" name="message" class="message-input-area"></textarea>
-                    </div>
-                    <button type="submit" class="send-message-button">
-                        <i class="fa-solid fa-paper-plane"></i> 送信
+                <div class="chat-component">
+                    <label for="message" class="chat-from-title">メッセージ入力
+                    </label>
+                    <button type="submit"           class="send-message-button">
+                        <i class="fa-solid fa-paper-plane"></i>
                     </button>
-                </form>
-            </div>
 
+                        <form method="POST" action="{{ url_for('add_message') }}">
+                        <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                            <textarea id="message" name="message" class="message-input-area"></textarea>
+                        </form>
+                </div>
+            </div>
         </div>
-    </div>
 </main>
 {% endblock %}

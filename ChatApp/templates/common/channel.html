@@ -10,7 +10,7 @@
             <!-- チャンネルの登録-->
             <div class="channel-register">
                 <div class="channel-registrarion">チャンネル追加</div>
-                <div class="circle">
+                <div class="circle" id="add-channel-button" data-modal-trigger="add-channel-modal">
                     <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
@@ -20,16 +20,23 @@
                 {% for channel in channels %}
                 <div class="channel">
                     <a class="channel-name" href="{{ url_for('management_detail',channel_id=channel['channel_id']) }}">{{ channel.name }}</a>
-                    <i class="fa-solid fa-pen"></i>
-                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-pen" data-modal-trigger="update-channel-modal"></i>
+                    <i class="fa-solid fa-trash" data-modal-trigger="delete-channel-modal"></i>
                 </div>
-                {% include 'modal/add-channel-confirmation.html' %}
-                {% include 'modal/delete-channel-confirmation.html' %}
-                {% include 'modal/update-channel-confirmation.html' %}
+                
                 {% endfor %}
             </div>
         </div>
     </div>
-
+    {% include 'modal/add-channel.html' %}
+    {% include 'modal/add-channel-confirmation.html' %}
+    {% include 'modal/delete-channel.html' %}
+    {% include 'modal/delete-channel-confirmation.html' %}
+    {% include 'modal/update-channel.html' %}
+    {% include 'modal/update-channel-confirmation.html' %}
 </main>
+{% endblock %}{% block script %}
+
+<script src="{{url_for('static',filename='js/Channels/channels.js')}}"></script>
+
 {% endblock %}

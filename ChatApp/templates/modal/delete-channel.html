@@ -1,12 +1,4 @@
-{% extends 'common/base.html'%}
-{% block title %}<title>management_channel</title>{% endblock %}
-
-{% block body %}
-
-<!-- base.htmlのインクルードを行うコードを全てのリンクが整ったら削除する。-->
-<main>
-
-<div id="delete-channel-modal" class="modal">
+<div id="delete-channel-modal" class="modal" data-modal="delete-channel-modal">
     <div class="modal-content">
         <h3 class="modal-title">チャンネル削除</h3>
         <form class="delete-channel-form" method="post">
@@ -32,6 +24,3 @@
         </form>
     </div>
 </div>
-
-</main>
-{% endblock %}

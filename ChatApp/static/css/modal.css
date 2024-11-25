@@ -13,7 +13,6 @@
         align-items: center;
     }
 
-    /*
     #add-channel-modal,
     #add-channel-confirmation-modal,
     #delete-channel-modal,
@@ -22,7 +21,6 @@
     #update-channel-confirmation-modal {
         display: none;
     }
-    */
 
     .modal-content{
         background-color: white;

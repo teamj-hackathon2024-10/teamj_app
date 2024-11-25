@@ -6,6 +6,7 @@
     <div class="channels-wrapper">
         <div class="channels-container">
             <h1 class="channels-title">チャンネル一覧</h1>
+            {% if admin == 1 %}
 
             <!-- チャンネルの登録-->
             <div class="channel-register">
@@ -14,16 +15,18 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
-
+            {% endif %}
             <div class="channel-list-container" id="channels-container">
                 <!-- DBから取得したチャンネル一覧を描画する。 -->
                 {% for channel in channels %}
                 <div class="channel">
-                    <a class="channel-name" href="{{ url_for('management_detail',channel_id=channel['channel_id']) }}">{{ channel.name }}</a>
+                    <a class="channel-name" href="{{ url_for('detail',channel_id=channel['channel_id']) }}">{{ channel.name }}</a>
+
+            {% if admin == 1 %}
                     <i class="fa-solid fa-pen" data-modal-trigger="update-channel-modal"></i>
                     <i class="fa-solid fa-trash" data-modal-trigger="delete-channel-modal"></i>
+            {% endif %}
                 </div>
-                
                 {% endfor %}
             </div>
         </div>

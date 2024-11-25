@@ -32,13 +32,20 @@
           </div>
           <nav class="header__nav nav" id="js-nav">
             <ul class="nav__items nav-items">
+              {% if admin == 1 %}
                 <li class="nav-items__item"><a href="{{url_for('managementHome')}}">ホーム</a></li>
-                <li class="nav-items__item"><a href="{{url_for('managementChannels')}}">チャンネル一覧</a></li>
+                <li class="nav-items__item"><a href="{{url_for('index')}}">チャンネル一覧</a></li>
                 <li class="nav-items__item"><a href="">献立一覧</a></li>
                 <li class="nav-items__item"><a href="">メニュ一覧</a></li>
                 <li class="nav-items__item"><a href="">アレルギーあり園児一覧</a></li>
                 <li class="nav-items__item"><a href="">アレルギーマスタ</a></li>
                 <li class="nav-items__item"><a href="{{url_for('login')}}">ログアウト</a></li>
+              {% else %}
+                <li class="nav-items__item"><a href="{{url_for('userhome')}}">ホーム</a></li>
+                <li class="nav-items__item"><a href="{{url_for('index')}}">チャンネル一覧</a></li>
+                <li class="nav-items__item"><a href="">基本情報</a></li>
+                <li class="nav-items__item"><a href="{{url_for('login')}}">ログアウト</a></li>
+              {% endif %}
             </ul>
           </nav>
           <button class="header__hamburger hamburger" id="js-hamburger">

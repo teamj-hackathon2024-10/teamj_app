@@ -45,6 +45,7 @@ def userLogin():
                 session['id'] = user["id"]
                 if user['admin'] == 1:
                     session['admin'] = 1
+                    print('admin')
                     return redirect('management-home')
                 else:
                     session['admin'] = 0
@@ -96,14 +97,21 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:
-            print( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             DBuser = dbConnect.getUser(email)
             dbConnect.addUserToChannel(DBuser['id'],'9ED83D6C-8522-4869-BF13-ACD481FC9F0B')
             UserId = str(DBuser['id'])
             session['id'] = UserId
-            return redirect('/')
+            if DBuser['admin'] == 1:
+                session['admin'] = 1
+                return redirect('/management-home')
+            else:
+                session['admin'] = 0
+                return redirect('/')
     return redirect('/signup')
+
+
+
 
 
 

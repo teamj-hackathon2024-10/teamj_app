@@ -206,8 +206,8 @@ def detail(channel_id):
 
     return render_template('user/chats.html', messages=messages, channel=channel, user_id=user_id)
 
-# チャンネル詳細ページ表示機能
-@app.route('/detail/<channel_id>')
+# 管理者チャンネル詳細ページ表示機能
+@app.route('/management-detail/<channel_id>')
 def management_detail(channel_id):
     user_id = session.get("id")
     if user_id is None:
@@ -221,20 +221,21 @@ def management_detail(channel_id):
 
 
 
-# メッセージの投稿機能
-# @app.route('/message', methods=['POST'])
-# def add_message():
-#     user_id = session.get('id')
-#     if user_id is None:
-#         return redirect('/login')
+#メッセージの投稿機能
+@app.route('/message', methods=['POST'])
+def add_message():
+    user_id = session.get('id')
+    if user_id is None:
+        return redirect('/login')
 
-#     message = request.form.get('message')
-#     channels_id = request.form.get('channels_id')
+    message = request.form.get('message')
+    channel_id = request.form.get('channel_id')
+    print(f"channel_id: {channel_id}")
 
-#     if message:
-#         dbConnect.createMessage(user_id, channels_id, message)
+    if message:
+        dbConnect.createMessage(user_id, channel_id, message)
 
-#     return redirect('/user/chats.html/'{channels_id}.format(channels_id = channels_id))
+    return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
 
 
 
@@ -282,7 +283,7 @@ def management_detail(channel_id):
 #    children_id = session.get('children_id')
 #   if children_id is None:
 #       return redirect('/login')
-    
+
 #    else:
 #        allergen = dbConnect.getChildrenAllergens(children_id)
 #        allergen.reverse()
@@ -296,4 +297,3 @@ def management_detail(channel_id):
 
 if __name__ == '__main__':
     app.run (host= "0.0.0.0", debug = True)
-    

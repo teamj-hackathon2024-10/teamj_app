@@ -226,7 +226,6 @@ def delete_channel(channel_name):
 def detail(channel_id):
     user_id = session.get("id")
     admin=session.get('admin')
-    print(admin,'admin')
     if user_id is None:
         return redirect('/login')
     cid = channel_id
@@ -234,6 +233,7 @@ def detail(channel_id):
     messages = dbConnect.getMessageAll(channel_id)
 
     return render_template('common/chat.html', messages=messages, channel=channel, user_id=user_id,admin=admin)
+
 
 
 
@@ -250,7 +250,6 @@ def add_message():
 
     if message:
         dbConnect.createMessage(user_id, channel_id, message)
-        flash("メッセージが送信されました！")
 
     return redirect('/detail/{channel_id}'.format(channel_id = channel_id))
 

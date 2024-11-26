@@ -124,8 +124,13 @@ def index():
     if user_id is None:
         return redirect('/login')
     else:
-        channels = dbConnect.getUserChannels(user_id)
+        if admin:
+            channels = dbConnect.getAdminChannels()
+        else:
+            channels = dbConnect.getChannels(user_id)
+
         # channels.update_at()
+
     return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin)
 
 

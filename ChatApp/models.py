@@ -47,7 +47,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO userchannels (user_id, channel_id) VALUES (%s, %s);"
+            sql = "INSERT INTO channels (user_id, channel_id) VALUES (%s, %s);"
             cur.execute(sql, (user_id, channel_id ))
             conn.commit()
         except Exception as e:
@@ -58,16 +58,35 @@ class dbConnect:
             conn.close()
 
 
-    def getUserChannels(user_id):
-        #特定のユーザーを関連づけたチャンネルの取得
+    def getChannels(user_id):
+        #個別チャンネルとオープンのチャンネルの情報
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = """SELECT * FROM userchannels AS U
-            INNER JOIN channels AS C
-            ON U.channel_id = C.id
-              WHERE U.user_id = %s;"""
+            sql = """SELECT * FROM channels AS C
+            INNER JOIN users AS U
+            ON C.user_id = U.id
+            WHERE U.id = %s;"""
             cur.execute(sql, (user_id))
+            channels = cur.fetchall()
+            sql2 = 'SELECT * FROM channels WHERE is_open = TRUE;'
+            cur.execute(sql2)
+            channels2 = cur.fetchall()
+            channels.append(channels2)
+            return channels
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+
+    def getAdminChannels():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = """SELECT * FROM channels;"""
+            cur.execute(sql)
             channels = cur.fetchall()
             return channels
         except Exception as e:
@@ -85,7 +104,7 @@ class dbConnect:
             sql = """SELECT * FROM users
             INNER JOIN userchannels
             ON userchannels.user_id = users.id
-            WHERE userchannles.channel_id = %s"""
+            WHERE userchannels.channel_id = %s"""
             cur.execute(sql, (cid))
             users = cur.fetchall()
             return users

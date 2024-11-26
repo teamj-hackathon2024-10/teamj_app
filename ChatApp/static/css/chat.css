@@ -26,14 +26,18 @@
   }
 
   .box{
+    width: 70%;
+    position: relative;
+    border: var(--black) solid 1px;
+    padding: 10px;
   }
 
-  .box-left{
+  .messages{
+    margin-right: auto;
   }
-
-  .box-right{
-  }
-
+  .my-messages{
+    text-align: right;
+ }
   .chat-form{
       height: 160px;
       width: 95%;
@@ -50,7 +54,7 @@
   }
 
   .chat-component{
-      width: 90%;
+      width: 96%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -63,6 +67,7 @@
   }
 
   .fa-paper-plane{
+      color: var(--oleeve);
       font-size: 24px;
   }
 

@@ -5,30 +5,44 @@
 <main>
     <div class="chat-wrapper">
         <div class="chat-container">
-            <div class="chat-to">sample</div>
+            <div class="chat-to">{{channel['name']}}</div>
 
             <div class="chat-list">
-                {% if messages|length > 0 %}{% for message in messages %}
-                {% if message.user_id == user_id %}
-                <div class="my-messages">
-                    <p class="box box-right">{{ message.message }}</p>
-                </div>
+                {% if messages|length > 0 %}
+                    {% for message in messages %}
+                    <p>{{message.user_id}}{{user_id}}</p>
+                        {% if message.user_id == user_id %}
+                            <!-- 自分のメッセージ -->
+                            <div class="my-messages">
+                                <p class="box box-right">{{ message.message }}</p>
+                            </div>
+                        {% else %}
+                            <!-- 他のユーザーのメッセージ -->
+                            <div class="messages">
+                                <p class="user-name">{{ message.user_name }}</p>
+                                <p class="box box-left">{{ message.message }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 {% else %}
-                <div class="messages">
-                    <p class="user-name">{{ message.user_name }}</p>
-                    <p class="box box-left">{{ message.message }}</p>
-                </div>
-                {% endif %}{% endfor %}{% else %}
-                <div id = "no-message"><p>まだメッセージがありません。</p></div>
+                    <div id="no-message">
+                        <p>まだメッセージがありません。</p>
+                    </div>
                 {% endif %}
             </div>
 
+
             <div class="chat-form">
-                <div class="chat-component">
-                    <div class="chat-from-title">メッセージ入力</div>
-                    <i class="fa-solid fa-paper-plane"></i>
-                </div>
-                <div class="message-input-area"></div>
+                <form method="POST" action="{{ url_for('add_message') }}">
+                    <div class="chat-component">
+                            <label for="message" class="chat-from-title">メッセージ入力</label>
+                            <button type="submit" class="send-message-button">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                            <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                            <textarea id="message" name="message" class="message-input-area"></textarea>
+                </form>
             </div>
         </div>
     </div>

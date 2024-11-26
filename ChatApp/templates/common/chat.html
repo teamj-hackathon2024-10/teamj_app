@@ -24,11 +24,18 @@
             </div>
 
             <div class="chat-form">
+                <form method="POST" action="{{ url_for('add_message') }}">
                 <div class="chat-component">
                     <div class="chat-from-title">メッセージ入力</div>
-                    <i class="fa-solid fa-paper-plane"></i>
+                    <button type="submit"           class="send-message-button">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
                 </div>
-                <div class="message-input-area"></div>
+                <div class="message-input-area">
+                        <textarea id="message" name="message" class="message-input-area"></textarea>
+                        <input type="hidden" name="channel_id" value="{{ channel.id }}">
+                        </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,79 +1,73 @@
 /*　スマホの画面を作成するので、全てのCSSをメディアクエリで囲む */
 @media screen and (max-width: 430px) {
-    .chat-wrapper{
-        width: 100%;
-        padding-top: 32px;
-        padding-bottom: 32px;
-        display: flex;
-        justify-content: center;
-    }
+  .chat-wrapper{
+      width: 100%;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      display: flex;
+      justify-content: center;
+  }
 
-    .chat-container{
-        
-        width: 95%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+  .chat-container{
 
-    .chat-to{
-        color: var(--oleeve);
-        font-size: 24px;
-    }
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
 
-    .chat-list{
-        width: 100%;
-        height: 60%;
-    }
+  .chat-to{
+      color: var(--oleeve);
+      font-size: 24px;
+  }
 
-    .box{
-        position: relative;
-        background-color: var(--white);
-        border: var(--black) solid 1px;
-        padding: 10px;
-        text-align: center;
-        color: var(--black);
-    }
+  .chat-list{
+  }
 
-    .box-left{
-    }
+  .box{
+  }
 
-    .box-right{
+  .box-left{
+  }
+
+  .box-right{
+  }
+
+  .chat-form{
+      height: 160px;
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+  }
 
 
-    .chat-form{
-        height: 160px;
-        width: 95%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+  .chat-form form{
+      width: 100%;
+  }
 
-    }
+  .chat-component{
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+  }
 
-    .chat-component{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-    }
+  .chat-from-title{
+      color: var(--oleeve);
+      font-size: 16px;
+  }
 
-    .chat-from-title{
-        color: var(--oleeve);
-        font-size: 16px;
-    }
+  .fa-paper-plane{
+      font-size: 24px;
+  }
 
-    .fa-paper-plane{
-        color: var(--oleeve);
-        font-size: 24px;
-        float: left;
-    }
-
-    textarea {
-        resize: none;
-        width:320px;
-        height:100px;
-        border: 2px solid var(--oleeve);
-    }
+  .message-input-area{
+      width: 100%;
+      height: 100px;
+      border: 2px solid var(--oleeve);
+  }

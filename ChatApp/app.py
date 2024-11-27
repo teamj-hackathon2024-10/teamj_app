@@ -45,7 +45,6 @@ def userLogin():
                 session['id'] = user["id"]
                 if user['admin'] == 1:
                     session['admin'] = 1
-                    print('admin')
                     return redirect('management-home')
                 else:
                     session['admin'] = 0
@@ -119,7 +118,6 @@ def userSignup():
 def index():
     user_id = session.get('id')
     admin=session.get('admin')
-    print(admin,'admin')
     if user_id is None:
         return redirect('/login')
     else:
@@ -181,7 +179,7 @@ def test():
 def add_channel():
    uid = session.get('admin')
    if uid is None:
-       return redirect('/login') #   あとで修正が必要
+       return redirect('/management/home.html') #   管理者のホームへ移動へ変更済
    channel_name = request.form.get('channelTitle')
    channel = dbConnect.getChannelByName(channel_name)
    if channel == None:

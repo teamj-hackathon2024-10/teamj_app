@@ -98,9 +98,9 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = """SELECT * FROM users
-            INNER JOIN userchannels
-            ON userchannels.user_id = users.id
-            WHERE userchannels.channel_id = %s"""
+            INNER JOIN channels
+            ON channels.user_id = users.id
+            WHERE channels.channel_id = %s"""
             cur.execute(sql, (cid))
             users = cur.fetchall()
             return users

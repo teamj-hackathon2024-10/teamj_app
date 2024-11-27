@@ -11,7 +11,7 @@ app.permanent_session_lifetime = timedelta(days=30)
 
 
 # ユーザーホーム画面の表示
-@app.route('/')
+@app.route('/user_home')
 def userhome():
     return render_template(
     'user/userhome.html'
@@ -19,14 +19,14 @@ def userhome():
 
 
 # ログインページの表示
-@app.route('/login')
+@app.route('/')
 def login():
     return render_template('registration/login.html')
 
 
 
 # ログイン処理
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def userLogin():
     email = request.form.get('email')  # emailとpasswordでログインする
     password = request.form.get('password')
@@ -48,8 +48,8 @@ def userLogin():
                     return redirect('management-home')
                 else:
                     session['admin'] = 0
-                    return redirect('/')
-    return redirect('/login')
+                    return redirect('/user_home')
+    return redirect('/')
 
 
 
@@ -57,7 +57,7 @@ def userLogin():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect('/login')
+    return redirect('/')
 
 
 
@@ -105,7 +105,7 @@ def userSignup():
                 return redirect('/management-home')
             else:
                 session['admin'] = 0
-                return redirect('/')
+                return redirect('/user_home')
     return redirect('/signup')
 
 
@@ -119,7 +119,7 @@ def index():
     user_id = session.get('id')
     admin=session.get('admin')
     if user_id is None:
-        return redirect('/login')
+        return redirect('/')
     else:
         if admin:
             channels = dbConnect.getAdminChannels()
@@ -148,7 +148,7 @@ def managementHome():
 #     user_id = session.get('id')
 #     print(user_id)
 #     if user_id is None:
-#         return redirect('/login')
+#         return redirect('/')
 #     else:
 #         channels = dbConnect.getUserChannels(user_id)
 #         # channels.update_at()
@@ -166,7 +166,7 @@ def test():
 # def management_detail(channel_id):
 #     user_id = session.get("id")
 #     if user_id is None:
-#         return redirect('/login')
+#         return redirect('/')
 
 #     cid = channel_id
 #     channel = dbConnect.getChannelById(cid)
@@ -194,7 +194,7 @@ def add_channel():
        target_user_id = request.form.get('target_user_id')
        if target_user_id:
            dbConnect.updateChannel(channel_id,target_user_id)
-       return redirect('/')
+       return redirect('/user_home')
    else:
        error = '既に同じ名前のチャンネルがあります'
        return render_template('error/error.html', error_message=error)
@@ -221,7 +221,7 @@ def delete_channel(channel_name):
 #def update_channel():
 #     user_id = session.get("id")
 #     if user_id is None:
-#         return redirect('/login')
+#         return redirect('/')
 
 #     channel_id = request.form.get('channel_id')
 #     channel_name = request.form.get('channelTittle')
@@ -238,7 +238,7 @@ def detail(channel_id):
     user_id = session.get("id")
     admin=session.get('admin')
     if user_id is None:
-        return redirect('/login')
+        return redirect('/')
     cid = channel_id
     channel = dbConnect.getChannelById(cid)
     messages = dbConnect.getMessageAll(channel_id)
@@ -253,7 +253,7 @@ def detail(channel_id):
 def add_message():
     user_id = session.get('id')
     if user_id is None:
-        return redirect('/login')
+        return redirect('/')
 
     message = request.form.get('message')
     channel_id = request.form.get('channel_id')
@@ -296,7 +296,7 @@ def add_message():
 #         dbConnect.updateUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
 #         DBuser = dbConnect.getUser(user_id)
 #         session['id'] = DBuser['id']
-#         return redirect('/')
+#         return redirect('/user_home')
 #     return render_template('/user/user_information.html', user_id = user_id)
 
 
@@ -309,7 +309,7 @@ def add_message():
 #def allergenMaster(allergen_id):
 #    children_id = session.get('children_id')
 #   if children_id is None:
-#       return redirect('/login')
+#       return redirect('/')
 
 #    else:
 #        allergen = dbConnect.getChildrenAllergens(children_id)

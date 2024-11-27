@@ -10,7 +10,7 @@
             <div class="chat-list">
                 {% if messages|length > 0 %}
                     {% for message in messages %}
-                    <p>{{message.user_id}}{{user_id}}</p>
+
                         {% if message.user_id == user_id %}
                             <!-- 自分のメッセージ -->
                             <div class="my-messages">

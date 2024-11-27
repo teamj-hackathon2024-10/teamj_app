@@ -99,7 +99,6 @@ def userSignup():
         else:
             dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             DBuser = dbConnect.getUser(email)
-            dbConnect.addUserToChannel(DBuser['id'],'9ED83D6C-8522-4869-BF13-ACD481FC9F0B')
             UserId = str(DBuser['id'])
             session['id'] = UserId
             if DBuser['admin'] == 1:
@@ -182,12 +181,17 @@ def test():
 def add_channel():
    uid = session.get('admin')
    if uid is None:
-       return redirect('/login')
+       return redirect('/login') #   あとで修正が必要
    channel_name = request.form.get('channelTitle')
    channel = dbConnect.getChannelByName(channel_name)
    if channel == None:
-       channel_description = request.form.get('channelDescription')
-       dbConnect.addChannels(uid, channel_name, channel_description)
+       channel_id = str(uuid.uuid4())
+       is_open = request.form.get('is_open', False)
+       dbConnect.addChannels(channel_id, channel_name, is_open)
+
+       target_user_id = request.form.get('target_user_id')
+       if target_user_id:
+           dbConnect.updateChannel(channel_id,target_user_id)
        return redirect('/')
    else:
        error = '既に同じ名前のチャンネルがあります'

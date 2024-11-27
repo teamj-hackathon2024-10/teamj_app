@@ -42,20 +42,20 @@ class dbConnect:
             conn.close()
 
 
-    def addUserToChannel(user_id, channel_id):
-        #ユーザーをチャンネルに追加する
-        try:
-            conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "INSERT INTO channels (user_id, channel_id) VALUES (%s, %s);"
-            cur.execute(sql, (user_id, channel_id ))
-            conn.commit()
-        except Exception as e:
-            print(f'エラーが発生しています：{e}')
-            abort(500)
-        finally:
-            cur.close()
-            conn.close()
+    # def addUserToChannel(user_id, channel_id):
+    #     #ユーザーをチャンネルに追加する
+    #     try:
+    #         conn = DB.getConnection()
+    #         cur = conn.cursor()
+    #         sql = "INSERT INTO channels (user_id, channel_id) VALUES (%s, %s);"
+    #         cur.execute(sql, (user_id, channel_id ))
+    #         conn.commit()
+    #     except Exception as e:
+    #         print(f'エラーが発生しています：{e}')
+    #         abort(500)
+    #     finally:
+    #         cur.close()
+    #         conn.close()
 
 
     def getChannels(user_id):
@@ -63,16 +63,12 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = """SELECT * FROM channels AS C
-            INNER JOIN users AS U
-            ON C.user_id = U.id
-            WHERE U.id = %s;"""
+            sql = """SELECT * FROM channels
+            WHERE is_open = TRUE
+            OR user_id = %s
+            ORDER BY update_at DESC;"""
             cur.execute(sql, (user_id))
             channels = cur.fetchall()
-            sql2 = 'SELECT * FROM channels WHERE is_open = TRUE;'
-            cur.execute(sql2)
-            channels2 = cur.fetchall()
-            channels.append(channels2)
             return channels
         except Exception as e:
             print(f'エラーが発生しています：{e}')
@@ -115,12 +111,12 @@ class dbConnect:
             cur.close()
             conn.close()
 
-    def addChannel(id, newChannelName):
+    def addChannel(channel_id, channel_name, is_open = False):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO channels (uid, name,update_at ) VALUES (%s, %s, NOW());"
-            cur.execute(sql, (id, newChannelName))
+            sql = "INSERT INTO channels (id, name,update_at, is_open) VALUES (%s, %s, NOW(), %s);"
+            cur.execute(sql, (channel_id, channel_name, is_open))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
@@ -162,12 +158,12 @@ class dbConnect:
 
 
 
-    def updateChannel(newChannelName,cid):
+    def updateChannel(channel_id, user_id):
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "UPDATE channels SET name=%s, update_at=NOW() WHERE id=%s;"
-            cur.execute(sql, (newChannelName, cid))
+            sql = "UPDATE channels SET user_id= %s, update_at=NOW() WHERE id=%s;"
+            cur.execute(sql, (user_id, channel_id))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')

@@ -163,7 +163,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM channels WHERE name=%s;"
+            print(channel_name)
+            sql = "SELECT * FROM channels WHERE name = %s;"
+            print(channel_name)
             cur.execute(sql, (channel_name))
             channel = cur.fetchone()
             return channel

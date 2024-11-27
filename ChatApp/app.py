@@ -179,11 +179,13 @@ def test():
 # チャンネルの追加
 @app.route('/management-channels', methods=['POST'])
 def add_channel():
-   uid = session.get('admin')
+   uid = session.get('id')
+   print(uid)
    if uid is None:
        return redirect('/management/home.html') #   管理者のホームへ移動へ変更済
    channel_name = request.form.get('channelTitle')
    channel = dbConnect.getChannelByName(channel_name)
+   print("check1")
    if channel == None:
        channel_id = str(uuid.uuid4())
        is_open = request.form.get('is_open', False)

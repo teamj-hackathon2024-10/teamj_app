@@ -42,6 +42,24 @@ class dbConnect:
             conn.close()
 
 
+    def getAllUsers():
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "SELECT * FROM users;"
+            cur.execute(sql)
+            users = cur.fetchall()
+            return users
+        except Exception as e:
+            print(f'エラーが発生しています：{e}')
+            abort(500)
+        finally:
+            cur.close()
+            conn.close()
+
+
+
+
     # def addUserToChannel(user_id, channel_id):
     #     #ユーザーをチャンネルに追加する
     #     try:

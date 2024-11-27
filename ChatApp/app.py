@@ -123,12 +123,14 @@ def index():
     else:
         if admin:
             channels = dbConnect.getAdminChannels()
+            users = dbConnect.getAllUsers()
         else:
             channels = dbConnect.getChannels(user_id)
+            users = None
 
         # channels.update_at()
 
-    return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin)
+    return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin, users=users)
 
 
 

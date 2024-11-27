@@ -49,7 +49,7 @@ CREATE TABLE channels (
     is_open boolean DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO channels (id, name, update_at) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00');
+INSERT INTO channels (id, name, update_at, is_open) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00', 1);
 
 
 CREATE TABLE messages (

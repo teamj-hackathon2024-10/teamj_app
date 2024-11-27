@@ -175,14 +175,18 @@ def test():
 # チャンネルの追加
 @app.route('/management-channels', methods=['POST'])
 def add_channel():
-   uid = session.get('admin')
+   uid = session.get('id')
+   print(uid)
    if uid is None:
        return redirect('/login')
-   channel_name = request.form.get('channelTitle')
+   channel_name = request.form.get('channel-name')
+   print("check0")
    channel = dbConnect.getChannelByName(channel_name)
+   print("check1")
    if channel == None:
-       channel_description = request.form.get('channelDescription')
-       dbConnect.addChannels(uid, channel_name, channel_description)
+       #channel_description = request.form.get('channelDescription')
+       dbConnect.addChannel(uid, channel_name)
+       print("check2")
        return redirect('/')
    else:
        error = '既に同じ名前のチャンネルがあります'

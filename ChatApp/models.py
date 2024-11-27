@@ -100,7 +100,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO channels (uid, name,update_at ) VALUES (%s, %s, NOW());"
+            sql = "INSERT INTO channels (id, name,update_at ) VALUES (%s, %s, NOW());"
             cur.execute(sql, (id, newChannelName))
             conn.commit()
         except Exception as e:
@@ -130,7 +130,9 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "SELECT * FROM channels WHERE name=%s;"
+            print(channel_name)
+            sql = "SELECT * FROM channels WHERE name = %s;"
+            print(channel_name)
             cur.execute(sql, (channel_name))
             channel = cur.fetchone()
             return channel

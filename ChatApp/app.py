@@ -45,7 +45,6 @@ def userLogin():
                 session['id'] = user["id"]
                 if user['admin'] == 1:
                     session['admin'] = 1
-                    print('admin')
                     return redirect('management-home')
                 else:
                     session['admin'] = 0
@@ -99,7 +98,6 @@ def userSignup():
         else:
             dbConnect.createUser( name, email, password, phone_number, child_name, child_sex, allergies ,child_birthday)
             DBuser = dbConnect.getUser(email)
-            dbConnect.addUserToChannel(DBuser['id'],'9ED83D6C-8522-4869-BF13-ACD481FC9F0B')
             UserId = str(DBuser['id'])
             session['id'] = UserId
             if DBuser['admin'] == 1:
@@ -120,13 +118,19 @@ def userSignup():
 def index():
     user_id = session.get('id')
     admin=session.get('admin')
-    print(admin,'admin')
     if user_id is None:
         return redirect('/login')
     else:
-        channels = dbConnect.getUserChannels(user_id)
+        if admin:
+            channels = dbConnect.getAdminChannels()
+            users = dbConnect.getAllUsers()
+        else:
+            channels = dbConnect.getChannels(user_id)
+            users = None
+
         # channels.update_at()
-    return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin)
+
+    return render_template('common/channel.html', channels=channels, user_id=user_id,admin=admin, users=users)
 
 
 
@@ -177,12 +181,17 @@ def test():
 def add_channel():
    uid = session.get('admin')
    if uid is None:
-       return redirect('/login')
+       return redirect('/management/home.html') #   管理者のホームへ移動へ変更済
    channel_name = request.form.get('channelTitle')
    channel = dbConnect.getChannelByName(channel_name)
    if channel == None:
-       channel_description = request.form.get('channelDescription')
-       dbConnect.addChannels(uid, channel_name, channel_description)
+       channel_id = str(uuid.uuid4())
+       is_open = request.form.get('is_open', False)
+       dbConnect.addChannels(channel_id, channel_name, is_open)
+
+       target_user_id = request.form.get('target_user_id')
+       if target_user_id:
+           dbConnect.updateChannel(channel_id,target_user_id)
        return redirect('/')
    else:
        error = '既に同じ名前のチャンネルがあります'

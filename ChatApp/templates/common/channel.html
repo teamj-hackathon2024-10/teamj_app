@@ -23,7 +23,7 @@
                 <!-- DBから取得したチャンネル一覧を描画する。 -->
                 {% for channel in channels %}
                 <div class="channel">
-                    <a class="channel-name" href="{{ url_for('detail',channel_id=channel['channel_id']) }}" id="updated-channel-name">{{ channel.name }}</a>
+                    <a class="channel-name" href="{{ url_for('detail',channel_id=channel['id']) }}">{{ channel.name }}</a>
 
             {% if admin == 1 %}
                     <i class="fa-solid fa-pen" id="update-channel-button" data-modal-trigger="update-channel-modal"></i>

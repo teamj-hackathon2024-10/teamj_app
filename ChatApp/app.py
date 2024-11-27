@@ -182,14 +182,14 @@ def add_channel():
    uid = session.get('id')
    print(uid)
    if uid is None:
-       return redirect('/management/home.html') #   管理者のホームへ移動へ変更済
-   channel_name = request.form.get('channelTitle')
+       return redirect('/management-home') #   管理者のホームへ移動へ変更済
+   channel_name = request.form.get('channel-name')
    channel = dbConnect.getChannelByName(channel_name)
    print("check1")
    if channel == None:
        channel_id = str(uuid.uuid4())
        is_open = request.form.get('is_open', False)
-       dbConnect.addChannels(channel_id, channel_name, is_open)
+       dbConnect.addChannel(channel_id, channel_name, is_open)
 
        target_user_id = request.form.get('target_user_id')
        if target_user_id:

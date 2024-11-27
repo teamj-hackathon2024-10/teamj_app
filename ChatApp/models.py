@@ -11,7 +11,7 @@ class dbConnect:
             user_sql = "INSERT INTO users ( name, email_address, password, phone_number, admin) VALUES (%s, %s, %s, %s, %s);"
             cur.execute(user_sql, ( name, email, password, phone_number,0))
             user_id_sql = 'SELECT id FROM users WHERE email_address=%s'
-            cur.execute(user_id_sql, (email))
+            cur.execute(user_id_sql, (email,))
             user_id = cur.fetchone()
             print(user_id)
             children_sql = "INSERT INTO children (user_id, name, sex, allergies,birthday,allergies_pdf) VALUES (%s, %s, %s, %s, %s, %s);"
@@ -31,7 +31,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT * FROM users WHERE email_address=%s;"
-            cur.execute(sql, (email))
+            cur.execute(sql, (email,))
             user = cur.fetchone()
             return user
         except Exception as e:
@@ -85,7 +85,7 @@ class dbConnect:
             WHERE is_open = TRUE
             OR user_id = %s
             ORDER BY update_at DESC;"""
-            cur.execute(sql, (user_id))
+            cur.execute(sql, (user_id,))
             channels = cur.fetchall()
             return channels
         except Exception as e:
@@ -119,7 +119,7 @@ class dbConnect:
             INNER JOIN channels
             ON channels.user_id = users.id
             WHERE channels.channel_id = %s"""
-            cur.execute(sql, (cid))
+            cur.execute(sql, (cid,))
             users = cur.fetchall()
             return users
         except Exception as e:
@@ -133,7 +133,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO channels (id, name,update_at, is_open) VALUES (%s, %s, NOW(), %s);"
+            sql = "INSERT INTO channels (id, name, update_at, is_open) VALUES (%s, %s, NOW(), %s);"
             cur.execute(sql, (channel_id, channel_name, is_open))
             conn.commit()
         except Exception as e:
@@ -149,7 +149,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT * FROM channels WHERE id=%s;"
-            cur.execute(sql, (cid))
+            cur.execute(sql, (cid,))
             channel = cur.fetchone()
             return channel
         except Exception as e:
@@ -166,7 +166,7 @@ class dbConnect:
             print(channel_name)
             sql = "SELECT * FROM channels WHERE name = %s;"
             print(channel_name)
-            cur.execute(sql, (channel_name))
+            cur.execute(sql, (channel_name,))
             channel = cur.fetchone()
             return channel
         except Exception as e:
@@ -198,7 +198,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "DELETE FROM channels WHERE id=%s;"
-            cur.execute(sql, (cid))
+            cur.execute(sql, (cid,))
             conn.commit()
         except Exception as e:
             print(f'エラーが発生しています：{e}')
@@ -221,7 +221,7 @@ class dbConnect:
             WHERE m.channel_id = %s
             ORDER BY m.datetime ASC;
             """
-            cur.execute(sql, (channel_id))
+            cur.execute(sql, (channel_id,))
             messages = cur.fetchall()
             return messages
         except Exception as e:
@@ -236,7 +236,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO messages(user_id, channel_id, message,datetime) VALUES(%s, %s, %s, NOW())"
+            sql = "INSERT INTO messages(user_id, channel_id, message, datetime) VALUES(%s, %s, %s, NOW())"
             cur.execute(sql, (user_id, channel_id, message))
             conn.commit()
         except Exception as e:
@@ -254,7 +254,7 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
             sql = "SELECT name FROM children WHERE user_id=%s;"
-            cur.execute(sql, (user_id))
+            cur.execute(sql, (user_id,))
             child_name = cur.fetchall()
             return child_name
         except Exception as e:

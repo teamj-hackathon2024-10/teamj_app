@@ -43,20 +43,14 @@ INSERT INTO classes (id, name) VALUES (1, 'ひまわり');
 
 CREATE TABLE channels (
     id VARCHAR(255) PRIMARY KEY,
+    user_id INT,
     name VARCHAR(255) NOT NULL,
-    update_at DATETIME NOT NULL
+    update_at DATETIME NOT NULL,
+    is_open boolean DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
-INSERT INTO channels (id, name, update_at) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00');
+INSERT INTO channels (id, name, update_at, is_open) VALUES("9ED83D6C-8522-4869-BF13-ACD481FC9F0B", "お知らせチャンネル", '2020-01-01 10:10:10-08:00', 1);
 
-
-CREATE TABLE userchannels (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    channel_id varchar(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (channel_id) REFERENCES channels(id)
-);
-INSERT INTO userchannels (user_id, channel_id) VALUES(1, "9ED83D6C-8522-4869-BF13-ACD481FC9F0B");
 
 CREATE TABLE messages (
     id INT AUTO_INCREMENT PRIMARY KEY,

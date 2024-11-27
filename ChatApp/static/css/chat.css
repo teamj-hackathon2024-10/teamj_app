@@ -34,7 +34,7 @@
 
   .box{
     position: relative;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px 0px 10px;
   }
 
   .messages{
@@ -45,14 +45,14 @@
     font-size: 12px;
   }
    
-  .box box-left{
+  .box.box-left{
     font-size: 16px;
 }
   .my-messages{
     text-align: right;
  }
 
- .box box-right{
+ .box.box-right{
     font-size: 16px;
 }
 
@@ -67,14 +67,19 @@
 
   .chat-form form{
       width: 100%;
+      align-items: center;
   }
 
   .chat-component{
-      width: 96%;
-      justify-content: space-between;
-      align-items: center;
+      width: 20%;
+      align-items: right;
       margin-bottom: 8px;
   }
+  
+  .send-message-button{
+    text-align: left;
+}
+
 
    .fa-paper-plane{
       font-size: 24px;

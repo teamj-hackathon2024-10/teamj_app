@@ -10,7 +10,6 @@
             <div class="chat-list">
                 {% if messages|length > 0 %}
                     {% for message in messages %}
-                    <p>{{message.user_id}}{{user_id}}</p>
                         {% if message.user_id == user_id %}
                             <!-- 自分のメッセージ -->
                             <div class="my-messages">
@@ -35,19 +34,30 @@
             <div class="chat-form">
                 <form method="POST" action="{{ url_for('add_message') }}">
                     <div class="chat-component">
-                            <label for="message" class="chat-from-title">メッセージ入力</label>
-                            <button type="submit" class="send-message-button">
+                        <button type="submit" id="send-button" class="send-message-button">
                                 <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </div>
+                        </button>
+                    </div>
                             <input type="hidden" name="channel_id" value="{{ channel.id }}">
-                            <textarea id="message" name="message" class="message-input-area"></textarea>
+                            <textarea id="message" name="message" class="message-input-area" placeholder="メッセージ入力"></textarea>
                 </form>
             </div>
         </div>
     </div>
 </main>
+
 {% endblock %}
+
+<script>
+    const form = document.getElementById('chat-form');
+    const sendButton = document.getElementById('send-button');
+    form.addEventListener('submit', function () {
+        sendButton.disabled = true;
+        setTimeout(() => {
+            sendButton.disabled = false;
+        }, 2000); 
+    });
+</script>
 
 <!-- 相手、自分のチャットを左右に出しわけるコードを作成する。　優先度：高 -->
 

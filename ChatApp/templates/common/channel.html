@@ -26,8 +26,8 @@
                     <a class="channel-name" href="{{ url_for('detail',channel_id=channel['id']) }}">{{ channel.name }}</a>
 
             {% if admin == 1 %}
-                    <i class="fa-solid fa-pen" id="update-channel-button" data-modal-trigger="update-channel-modal"></i>
-                    <i class="fa-solid fa-trash" id="delete-channel-button" data-modal-trigger="delete-channel-modal"></i>
+                    <i class="fa-solid fa-pen edit-buttons" id="update-channel-button" data-cid = {{channel.id}} data-channelname={{channel.name}}></i>
+                    <i class="fa-solid fa-trash trash-buttons " id="delete-channel-button" data-cid = {{channel.id}} data-channelname = {{channel.name}}></i>
             {% endif %}
                 </div>
                 {% endfor %}

@@ -67,56 +67,33 @@ const updateChannelModal = document.getElementById("update-channel-modal");
 //チャンネル編集確認モーダル
 const updateChannelModalConfirmation = document.getElementById("update-channel-confirmation-modal");
 
-//channelsにDBから取得するデータを確保する。
-//const channel
+//編集ボタンの配列を作成
+const editButtons = document.getElementsByClassName("edit-buttons");
+
+//押下したボタンの要素を取得する
+for(let i = 0; i < editButtons.length;i++){
+    editButtons[i].addEventListener("click",function(){
+        const cid = editButtons[i].dataset.cid;
+        const channelName = editButtons[i].dataset.channelname;
+
+        console.log("OK");
+        console.log("cid :",cid);
+        console.log("channelName :",channelName);
+
+        const targetName = document.getElementById("update-channel-input-value");
+        targetName.value = channelName;
+        targetName.setAttribute("readonly",true);
+
+        if(updateChannelModal){
+            updateChannelModal.style.display = "flex";
+        }else{
+            console.error("モーダルが見つかりません：",updateChannelModal);
+        }
+    });
+}
+
 
 /*
-//管理者かどうかを判定するフラグ
-const isAdmin = true;
-
-//channel.htmlに動的に作成したチャンネルデータを作成して挿入
-//挿入元の親コンテナを取得
-const channelsContainer = document.getElementById("channels-container");
-
-//チャンネルリストを動的に作成
-channels.forEach((channel, index) => {
-    //チャンネル要素の作成
-    const channelDiv = document.createElement("div");
-    channelDiv.className = "channel";
-    channelDiv.id = `channel-${channel.channel_id}`;
-
-    //チャンネル名リンクの作成
-    const channelLink = document.createElement("a");
-    channelLink.className = "channel-name";
-    channelLink.href = `/detail/${channel.channel_id}`;
-    channelLink.textContent = channel.name;
-    channelLink.id = `channel-name-${channel.channel_id}`;
-
-    //管理者機能ボタンの追加
-    if(isAdmin){
-        //編集ボタン
-        const editButton = document.createElement("i");
-        editButton.className = "fa-solid fa-pen";
-        editButton.id = `edit-channel-${channel.channel_id}`;
-        
-        //削除ボタン
-        const deleteButton = document.createElement("i");
-        deleteButton.className = "fa-solid fa-trash";
-        deleteButton.id = `delete-channel-${channel.channel_id}`
-
-        //ボタンをチャンネル要素に追加
-        channelDiv.appendChild(editButton);
-        channelDiv.appendChild(deleteButton);
-    }
-
-    //名前リンクをチャンネル要素に追加
-    channelDiv.appendChild(channelLink);
-
-    //完成したチャンネル要素を親コンテナに追加
-    channelsContainer.appendChild(channelDiv);
-});
-
-*/
 //チャンネル編集モーダル表示
 document.getElementById("update-channel-button").addEventListener('click',function(event){
 
@@ -127,7 +104,7 @@ document.getElementById("update-channel-button").addEventListener('click',functi
         console.error("モーダルが見つかりません：",updateChannelModal);
     }
 });
-
+*/
 
 //モーダルを閉じる処理(新規チャンネル追加)
 updateChannelModal.addEventListener("click", function(e){
@@ -182,35 +159,41 @@ const deleteChannelModal = document.getElementById("delete-channel-modal");
 //チャンネル削除確認モーダル
 const deleteChannelModalConfirmation = document.getElementById("delete-channel-confirmation-modal");
 
-//チャンネル削除モーダル表示
-document.getElementById("delete-channel-button").addEventListener('click',function(event){
-    console.log(deleteChannelModal);
-    if(deleteChannelModal){
-    deleteChannelModal.style.display = "flex"; //モーダルの表示
-    }else{
-        console.error("モーダルが見つかりません：", deleteChannelModal);
-    }
-    console.log(deleteChannelModalConfirmation);
-});
+//ゴミ箱ボタンの配列を作成
+const trashButtons = document.getElementsByClassName("trash-buttons");
 
-//モーダルを閉じる処理(チャンネル削除)
-deleteChannelModal.addEventListener("click", function(e){
-    if(e.target === deleteChannelModal){
-        deleteChannelModal.style.display = "none";
-    }
-});
+//押下したボタンの要素を取得する。
+for(let i = 0; i < trashButtons.length; i++){
+    trashButtons[i].addEventListener("click", function(){
+        const cid = trashButtons[i].dataset.cid;
+        const channelName = trashButtons[i].dataset.channelname;
+        console.log("cid :",cid);
+        console.log("channelName :",channelName);
+
+        const targetName = document.getElementById("delete-channel-input-value");
+        targetName.innerHTML = channelName;
+
+        console.log(deleteChannelModal);
+        if(deleteChannelModal){
+        deleteChannelModal.style.display = "flex"; //モーダルの表示
+        }else{
+            console.error("モーダルが見つかりません：", deleteChannelModal);
+        }
+        console.log(deleteChannelModalConfirmation);
+    });
+}
 
 //チャンネル削除確認モーダル表示
 document.getElementById("delete-channel-form").addEventListener("submit",function(event){
     event.preventDefault(); //フォーム送信を行わないようにするため。
     //削除対象チャンネル名を取得
-    const channelName = document.getElementById('delete-channel-input-value').value;
-    console.log(channelName);
+    const channelName = document.getElementById('delete-channel-input-value').textContent;
+    console.log("削除対象チャンネル名",channelName);
 
     //チャンネル名を確認モーダルに表示
     const deleteChannelDisplay = document.getElementById("delete-channel-display");
-    console.log(deleteChannelDisplay);
-    deleteChannelDisplay.value = channelName;
+    console.log("チャンネル名",deleteChannelDisplay);
+    deleteChannelDisplay.innerHTML = channelName;
     deleteChannelDisplay.setAttribute("readonly",true);
     
 
@@ -221,6 +204,13 @@ document.getElementById("delete-channel-form").addEventListener("submit",functio
         deleteChannelModalConfirmation.style.display = "flex";
     }else{
         console.error("確認画面のモーダルが見つかりません：",deleteChannelModalConfirmation);
+    }
+});
+
+//モーダルを閉じる処理(新規チャンネル追加)
+deleteChannelModal.addEventListener("click", function(e){
+    if(e.target === deleteChannelModal){
+        deleteChannelModal.style.display = "none";
     }
 });
 

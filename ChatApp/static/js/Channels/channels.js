@@ -53,10 +53,10 @@ addChannelModalConfirmation.addEventListener("click", function(e){
 });
 
 // 戻るリンクをクリックしたときの処理(チャンネル追加)
-document.getElementById('back-link').addEventListener('click', function (event) {
+document.getElementById('add-back-link').addEventListener('click', function (event) {
     event.preventDefault(); // リンクのデフォルト動作を防ぐ
     // 確認モーダルを閉じる
-    document.querySelector("add-channel-confirmation-modal").style.display = "none";
+    document.getElementById("add-channel-confirmation-modal").style.display = "none";
 });
 
 
@@ -70,6 +70,7 @@ const updateChannelModalConfirmation = document.getElementById("update-channel-c
 //channelsにDBから取得するデータを確保する。
 //const channel
 
+/*
 //管理者かどうかを判定するフラグ
 const isAdmin = true;
 
@@ -115,7 +116,7 @@ channels.forEach((channel, index) => {
     channelsContainer.appendChild(channelDiv);
 });
 
-
+*/
 //チャンネル編集モーダル表示
 document.getElementById("update-channel-button").addEventListener('click',function(event){
 
@@ -176,9 +177,73 @@ updateChannelModalConfirmation.addEventListener("click", function(e){
     }
 });
 
-// 戻るリンクをクリックしたときの処理(チャンネル追加)
-document.getElementById('back-link').addEventListener('click', function (event) {
+// 戻るリンクをクリックしたときの処理(チャンネル編集)
+document.getElementById('update-back-link').addEventListener('click', function (event) {
     event.preventDefault(); // リンクのデフォルト動作を防ぐ
     // 確認モーダルを閉じる
-    document.querySelector("update-channel-confirmation-modal").style.display = "none";
+    document.getElementById("update-channel-confirmation-modal").style.display = "none";
+});
+
+
+//チャンネル削除ボタン押下時処理
+
+//チャンネル削除モーダル
+const deleteChannelModal = document.getElementById("delete-channel-modal");
+//チャンネル削除確認モーダル
+const deleteChannelModalConfirmation = document.getElementById("delete-channel-confirmation-modal");
+
+//チャンネル削除モーダル表示
+document.getElementById("delete-channel-button").addEventListener('click',function(event){
+    console.log(deleteChannelModal);
+    if(deleteChannelModal){
+    deleteChannelModal.style.display = "flex"; //モーダルの表示
+    }else{
+        console.error("モーダルが見つかりません：", deleteChannelModal);
+    }
+    console.log(deleteChannelModalConfirmation);
+});
+
+//モーダルを閉じる処理(チャンネル削除)
+deleteChannelModal.addEventListener("click", function(e){
+    if(e.target === deleteChannelModal){
+        deleteChannelModal.style.display = "none";
+    }
+});
+
+//チャンネル削除確認モーダル表示
+document.getElementById("delete-channel-form").addEventListener("submit",function(event){
+    event.preventDefault(); //フォーム送信を行わないようにするため。
+    //削除対象チャンネル名を取得
+    const channelName = document.getElementById('delete-channel-input-value').value;
+    console.log(channelName);
+
+    //チャンネル名を確認モーダルに表示
+    const deleteChannelDisplay = document.getElementById("delete-channel-display");
+    console.log(deleteChannelDisplay);
+    deleteChannelDisplay.value = channelName;
+    deleteChannelDisplay.setAttribute("readonly",true);
+    
+
+    console.log("削除確認モーダル表示：",deleteChannelModalConfirmation);
+
+    //確認モーダルを表示
+    if(deleteChannelModalConfirmation){
+        deleteChannelModalConfirmation.style.display = "flex";
+    }else{
+        console.error("確認画面のモーダルが見つかりません：",deleteChannelModalConfirmation);
+    }
+});
+
+//モーダルを閉じる処理(新規チャンネル追加確認)
+deleteChannelModalConfirmation.addEventListener("click", function(e){
+    if(e.target === deleteChannelModalConfirmation){
+        deleteChannelModalConfirmation.style.display = "none";
+    }
+});
+
+// 戻るリンクをクリックしたときの処理(チャンネル削除)
+document.getElementById('delete-back-link').addEventListener('click', function (event) {
+    event.preventDefault(); // リンクのデフォルト動作を防ぐ
+    // 確認モーダルを閉じる
+    document.getElementById("delete-channel-confirmation-modal").style.display = "none";
 });

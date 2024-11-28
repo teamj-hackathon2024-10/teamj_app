@@ -39,6 +39,13 @@
         position: relative;
     }
 
+    .modal-content form{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .modal-title{
         color: var(--oleeve);
         font-size: large;
@@ -64,13 +71,14 @@
     .delete-channel-container{ 
         display: flex;
         align-items: center;
-        width: 80%;
+        width: 60%;
     }
 
     .update-channel-confirmation-container{
         display: flex;
+        justify-content: center;
         align-items: center;
-        width: 60%;
+        width: 80%;
         
     }
     
@@ -91,7 +99,7 @@
     }
 
     .update-channel-confirmation-container label{
-        flex: 1;
+        /*flex: 2;*/
     }
 
     .add-channel-container input{
@@ -114,6 +122,12 @@
     }
 
     .delete-channel-confirmation-container div{
+        flex:2;
+        color: var(--balck);
+        font-size: 1rem;
+    }
+
+    .delete-channel-confirmation-container label{
         flex:2;
         color: var(--balck);
         font-size: 1rem;

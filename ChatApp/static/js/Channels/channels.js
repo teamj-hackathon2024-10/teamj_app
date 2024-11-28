@@ -120,16 +120,6 @@ channels.forEach((channel, index) => {
 //チャンネル編集モーダル表示
 document.getElementById("update-channel-button").addEventListener('click',function(event){
 
-    // //編集対象のチャンネル名取得
-    // const targetChannelName = document.getElementById("updated-channel-name").value;
-
-    // //チャンネル編集モーダルに表示
-    // const updateChannelDisplay = document.getElementById("update-channel-dispaly");
-    // updateChannelDisplay.value = targetChannelName; 
-    // updateChannelDisplay.setAttribute("readonly",true);
-
-    //上記の処理はチャンネル一覧を取得する際にliタグで各チャンネルの要素を作成する必要があるので、その処理を作成した後に対応する。
-
     console.log(updateChannelModal);
     if(updateChannelModal){
     updateChannelModal.style.display = "flex"; //モーダルの表示
@@ -153,12 +143,12 @@ document.getElementById("update-channel-form").addEventListener("submit",functio
 
     //入力したチャンネル名を取得
     const channelName = document.getElementById('update-channel-input-value').value;
-    console.log(channelName);
+    console.log("編集画面のチャンネル名：",channelName);
 
     //チャンネル名を確認モーダルに表示
     const updateChannelDisplay = document.getElementById("update-channel-display");
-    console.log(updateChannelDisplay);
     updateChannelDisplay.value = channelName;
+    console.log("入力確定したチャンネル名：",updateChannelDisplay.value);
     updateChannelDisplay.setAttribute("readonly",true);
     
 

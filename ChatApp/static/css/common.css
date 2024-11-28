@@ -101,10 +101,11 @@ main {
 
 /* ナビのリンク */
 .nav-items__item a {
+  display: inline-block;
   color: var(--oleeve);
-  width: 100%;
+  width: fit-content;
   display: block;
-  text-align: center;
+  margin: auto;
   font-size: 24px;
   margin-bottom: 24px; /* メニュー間の余白を設定 */
 }
